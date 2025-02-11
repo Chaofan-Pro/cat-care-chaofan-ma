@@ -114,7 +114,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
 
 ### Mockups
 
-Please use this figma [link] (https://www.figma.com/design/woc5BfF9lMqHJLZsMpFRDb/Cat-Care?node-id=0-1&t=V5lM2v8quJNsg2rf-1).
+Please use this figma [link](https://www.figma.com/design/woc5BfF9lMqHJLZsMpFRDb/Cat-Care?node-id=0-1&t=V5lM2v8quJNsg2rf-1).
 
 ### Data
 
