@@ -1,15 +1,15 @@
 # Project Title
 
-Cat Care 🐈‍⬛
+# 😻Cat Care
 
 ## Overview
 
-"Cat Care" is an app designed for cat owners to easily document and track important aspects of their cats' well-being, such as toilet habits, vet appointments, and food preferences. The app aims to help owners provide better care and stay organized, ensuring their cats' health and happiness are closely monitored.
+"**Cat Care**" is an app designed for cat owners to easily document and track important aspects of their cats' well-being, such as toilet habits, vet appointments, and food preferences. The app aims to help owners provide better care and stay organized, ensuring their cats' health and happiness are closely monitored.
 
 ### Problem Space
 
-As a new cat owner, I quickly realized the need for an app to track my cat's information because it's hard to remember everything. I’m sure other cat owners can relate. 
-As we know, cats can’t communicate in English, so I can't ask them about their favorite food or how old they’ll be next week. Most importantly, cats are incredibly resilient and won’t express when they’re feeling unwell in a way I can easily understand. By the time many owners notice their cat is sick, the symptoms may already be quite serious. Regularly monitoring their health—such as tracking their weight and bathroom habits—can help identify potential issues early, ensuring they can see a vet sooner. 
+As a new cat owner, I quickly realized the need for an app to track my cat's information because it's hard to remember everything. I’m sure other cat owners can relate.
+As we know, cats can’t communicate in English, so I can't ask them about their favorite food or how old they’ll be next week. Most importantly, cats are incredibly resilient and won’t express when they’re feeling unwell in a way I can easily understand. By the time many owners notice their cat is sick, the symptoms may already be quite serious. Regularly monitoring their health—such as tracking their weight and bathroom habits—can help identify potential issues early, ensuring they can see a vet sooner.
 In short, having an app to record all relevant cat information is essential for every cat owner.
 
 ### User Profile
@@ -18,17 +18,16 @@ The Cat Care app is designed for cat owners with one or more cats. After registe
 
 ### Features
 
-😺Calendar with Categories: Log cat-related information with specific categories for each entry.
+😺**Calendar with Categories:** Log cat-related information with specific categories for each entry.
+
 - Cat weight
 - Cat's toilet routine
 - Vet appointments
 - Vaccine dates
 
-😺Customizable Reminders: 
-- Set reminders to prompt users to log their cat’s information
-- Set reminder for vet appointments.
+😺**Food Rating:** dry food, wet food, snacks.
 
-😺Food Rating: dry food, wet food, snacks.
+- Log food information: picture, brand, ingredients.
 - Rate food from 1 to 5 according to your cat’s preferences
 - Comment section to input more detailed info regarding the food.
 
@@ -36,49 +35,178 @@ The Cat Care app is designed for cat owners with one or more cats. After registe
 
 ### Tech Stack
 
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
+### Tech Stack  
+
+😺 **Frontend:** I will be using **React.js** to build a dynamic and interactive user interface. For styling, I will use **SASS**, which provides better modularity and maintainability. To optimize development speed and performance, I will set up the frontend with **Vite**, ensuring a fast and efficient build process.  
+
+😺 **Backend:** The backend will be built with **Node.js** and **Express** to create a robust and scalable RESTful API. **MySQL** will be used as the relational database, with **Knex.js** as the query builder to simplify database interactions and migrations, ensuring efficient data management.
+
 
 ### APIs
 
-List any external sources of data that will be used in your app.
+I will be developing a API for the Cat Care app using Node.js with Express, designed to be able to create, read, update, and delete data.
 
 ### Sitemap
 
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
+😺**HOME PAGE**
 
-- home page (login/create new account)
-- cats profile overview(display photo, name)(click to enter different cat profile)
-- cat profile(with link to cat food log and catlender)
-- catlender page
-- food log page(list of food logs with button to add or edit)
+- Login
+- Create new account
+
+😺**CATS PROFILES PAGE**
+
+- Individual cats profiles overview with (click to enter different cat profile detail page)
+  Display photo
+  Name
+  Age/birth date
+  Gender
+- Button to add cat
+
+😺**CAT PROFILE DETAIL/ADD/EDIT PAGE**(buttons different for each page)
+
+- Cat info
+  Display photo
+  Name
+  Age/birth date
+  Gender
+  Color
+  Weight
+  Intro
+- Button to edit cat
+- Button link to cat food log page
+- Button link to catlender page
+
+😺**FOOD LOG PAGE**
+
+- Search bar to search for existing log
+- List of food logs with button to delete or edit(linked to food log detail page)
+  Food name
+  Food brand
+  Food type
+  Food ratings
+- Button to add food
+
+😺**FOOD LOG DETAIL/ADD/EDIT PAGE**(buttons different for each page)
+
+- Display food info
+  Food photo
+  Food name
+  Food brand
+  Food type
+  Food ratings from different cats
+  Food comments from different cats
+- Button to delete/edit food
+- Button to save add/edit food
+- Button to cancel
+
+😺**CATLENDER PAGE**
+
+- Overview of the month which show different dot of which day has what type of logs
+- List of event logs(linked to event detail page)
+  Cat name
+  Event type
+  Event times
+  Event time
+  Event comment
+- Button to add event
+
+😺**CATLENDER DETAIL/ADD/EDIT PAGE**(buttons different for each page)
+
+- Display event info
+  Cat name
+  Event type
+  Event times
+  Event time
+  Event photo
+  Event comment
+- Button to delete/edit event
+- Button to save add/edit event
+- Button to cancel
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+Please use this figma [link] (https://www.figma.com/design/woc5BfF9lMqHJLZsMpFRDb/Cat-Care?node-id=0-1&t=V5lM2v8quJNsg2rf-1).
 
 ### Data
 
-- cats table
-- catlender table
-- food log table
+There will be four tables as shown below. Since different cats have different preferences for food, each food log will have ratings from different cats. Cats table connects to food rating table and catlender table through cat name. Food log table connects to food rating table through food id.
 
-Describe your data and the relationships between the data points. You can show this visually using diagrams, or write it out.
+😺**Cats table**
+
+- ID
+- Display photo
+- Name
+- Age/birth date
+- Gender
+- Color
+- Weight
+- Intro
+
+😺**Food log table**
+
+- ID
+- Food photo
+- Food name
+- Food brand
+- Food type(dry food, vet food, snacks)
+
+😺**Food rating table**
+
+- ID
+- Food id
+- Cat name
+- Cat rate food(from 1 to 5)
+- Food comment
+
+😺**Catlender table**
+
+- ID
+- Cat name
+- Date
+- Time
+- Event types (poop, peep, weight, vet appointments, vaccine dates, comment)
+- Event times
+- Event comment
+- Event photo
 
 ### Endpoints
 
-"/" homepage
-"/cats/:id" cats page
+- GET/api/cats
+- GET/api/cat
+- POST/api/cat
+- PUT/api/cat
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+- GET/api/foods
+- GET/api/food
+- POST/api/food
+- PUT/api/food
+- DELETE/api/food
+
+- GET/api/catlenders
+- GET/api/catlender
+- POST/api/catlender
+- PUT/api/catlender
+- DELETE/api/catlender
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date.
+The project will run from February 10 to February 26.
 
----
+**Feb 10 - Feb 16:** Set up the basic folder structure, establish the frontend code architecture, configure the backend structure, and complete backend functionality.
+**Feb 17 - Feb 23:** Integrate the frontend with the backend to enable data creation, retrieval, updating, and deletion (CRUD operations), and work on styling.
+**Feb 23 - Feb 26:** Conduct final debugging, optimize functionality, and refine styling for a polished user experience.
 
 ## Future Implementations
 
-phone section
+Reminder function: 
+- Reminde cat owners to log their cat info regularly. 
+- Reminde cat owners with up-coming vet appointment. 
 
-Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
+Integrate ChatGPT or other generative AI as a chatbot where cat owners can ask cat related questions. 
+
+Photo function:
+A photo section where cat owners can store the cat photos. 
+
+
+
+
