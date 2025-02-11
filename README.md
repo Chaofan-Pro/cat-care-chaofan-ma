@@ -18,28 +18,24 @@ The Cat Care app is designed for cat owners with one or more cats. After registe
 
 ### Features
 
-😺**Calendar with Categories:** Log cat-related information with specific categories for each entry.
-
+😺 **Calendar with Categories:** Log cat-related information with specific categories for each entry.
 - Cat weight
 - Cat's toilet routine
 - Vet appointments
 - Vaccine dates
 
-😺**Food Rating:** dry food, wet food, snacks.
-
+😺 **Food Rating:** dry food, wet food, snacks.
 - Log food information: picture, brand, ingredients.
 - Rate food from 1 to 5 according to your cat’s preferences
 - Comment section to input more detailed info regarding the food.
 
 ## Implementation
 
-### Tech Stack
-
 ### Tech Stack  
 
 😺 **Frontend:** I will be using **React.js** to build a dynamic and interactive user interface. For styling, I will use **SASS**, which provides better modularity and maintainability. To optimize development speed and performance, I will set up the frontend with **Vite**, ensuring a fast and efficient build process.  
 
-😺 **Backend:** The backend will be built with **Node.js** and **Express** to create a robust and scalable RESTful API. **MySQL** will be used as the relational database, with **Knex.js** as the query builder to simplify database interactions and migrations, ensuring efficient data management.
+😺 **Backend:** The backend will be built with **Node.js** and **Express** to create a robust and scalable API. **MySQL** will be used as the relational database, with **Knex.js** as the query builder to simplify database interactions and migrations, ensuring efficient data management.
 
 
 ### APIs
@@ -48,13 +44,11 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
 
 ### Sitemap
 
-😺**HOME PAGE**
-
+😺 **HOME PAGE**
 - Login
 - Create new account
 
-😺**CATS PROFILES PAGE**
-
+😺 **CATS PROFILES PAGE**
 - Individual cats profiles overview with (click to enter different cat profile detail page)
   Display photo
   Name
@@ -62,8 +56,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
   Gender
 - Button to add cat
 
-😺**CAT PROFILE DETAIL/ADD/EDIT PAGE**(buttons different for each page)
-
+😺 **CAT PROFILE DETAIL/ADD/EDIT PAGE**(buttons different for each page)
 - Cat info
   Display photo
   Name
@@ -76,8 +69,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
 - Button link to cat food log page
 - Button link to catlender page
 
-😺**FOOD LOG PAGE**
-
+😺 **FOOD LOG PAGE**
 - Search bar to search for existing log
 - List of food logs with button to delete or edit(linked to food log detail page)
   Food name
@@ -86,8 +78,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
   Food ratings
 - Button to add food
 
-😺**FOOD LOG DETAIL/ADD/EDIT PAGE**(buttons different for each page)
-
+😺 **FOOD LOG DETAIL/ADD/EDIT PAGE**(buttons different for each page)
 - Display food info
   Food photo
   Food name
@@ -99,8 +90,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
 - Button to save add/edit food
 - Button to cancel
 
-😺**CATLENDER PAGE**
-
+😺 **CATLENDER PAGE**
 - Overview of the month which show different dot of which day has what type of logs
 - List of event logs(linked to event detail page)
   Cat name
@@ -110,8 +100,7 @@ I will be developing a API for the Cat Care app using Node.js with Express, desi
   Event comment
 - Button to add event
 
-😺**CATLENDER DETAIL/ADD/EDIT PAGE**(buttons different for each page)
-
+😺 **CATLENDER DETAIL/ADD/EDIT PAGE**(buttons different for each page)
 - Display event info
   Cat name
   Event type
@@ -131,8 +120,7 @@ Please use this figma [link] (https://www.figma.com/design/woc5BfF9lMqHJLZsMpFRD
 
 There will be four tables as shown below. Since different cats have different preferences for food, each food log will have ratings from different cats. Cats table connects to food rating table and catlender table through cat name. Food log table connects to food rating table through food id.
 
-😺**Cats table**
-
+😺 **Cats table**
 - ID
 - Display photo
 - Name
@@ -142,24 +130,21 @@ There will be four tables as shown below. Since different cats have different pr
 - Weight
 - Intro
 
-😺**Food log table**
-
+😺 **Food log table**
 - ID
 - Food photo
 - Food name
 - Food brand
 - Food type(dry food, vet food, snacks)
 
-😺**Food rating table**
-
+😺 **Food rating table**
 - ID
 - Food id
 - Cat name
 - Cat rate food(from 1 to 5)
 - Food comment
 
-😺**Catlender table**
-
+😺 **Catlender table**
 - ID
 - Cat name
 - Date
@@ -192,19 +177,19 @@ There will be four tables as shown below. Since different cats have different pr
 
 The project will run from February 10 to February 26.
 
-**Feb 10 - Feb 16:** Set up the basic folder structure, establish the frontend code architecture, configure the backend structure, and complete backend functionality.
-**Feb 17 - Feb 23:** Integrate the frontend with the backend to enable data creation, retrieval, updating, and deletion (CRUD operations), and work on styling.
-**Feb 23 - Feb 26:** Conduct final debugging, optimize functionality, and refine styling for a polished user experience.
+😺**Feb 10 - Feb 16:** Set up the basic folder structure, establish the frontend code architecture, configure the backend structure, and complete backend functionality.
+😺**Feb 17 - Feb 23:** Integrate the frontend with the backend to enable data creation, retrieval, updating, and deletion (CRUD operations), and work on styling.
+😺**Feb 23 - Feb 26:** Conduct final debugging, optimize functionality, and refine styling for a polished user experience.
 
 ## Future Implementations
 
-Reminder function: 
+**Reminder function:**
 - Reminde cat owners to log their cat info regularly. 
 - Reminde cat owners with up-coming vet appointment. 
 
-Integrate ChatGPT or other generative AI as a chatbot where cat owners can ask cat related questions. 
+**Integrate ChatGPT** or other generative AI as a chatbot where cat owners can ask cat related questions. 
 
-Photo function:
+**Photo function:**
 A photo section where cat owners can store the cat photos. 
 
 
