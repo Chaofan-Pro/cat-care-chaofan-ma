@@ -1,6 +1,6 @@
 # Project Title
 
-# 😻Cat Care
+# 😻Cat Care😻
 
 ## Overview
 
@@ -178,7 +178,9 @@ There will be four tables as shown below. Since different cats have different pr
 The project will run from February 10 to February 26.
 
 😺**Feb 10 - Feb 16:** Set up the basic folder structure, establish the frontend code architecture, configure the backend structure, and complete backend functionality.
+
 😺**Feb 17 - Feb 23:** Integrate the frontend with the backend to enable data creation, retrieval, updating, and deletion (CRUD operations), and work on styling.
+
 😺**Feb 23 - Feb 26:** Conduct final debugging, optimize functionality, and refine styling for a polished user experience.
 
 ## Future Implementations
