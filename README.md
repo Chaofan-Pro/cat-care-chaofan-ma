@@ -14,7 +14,7 @@ In short, having an app to record all relevant cat information is essential for 
 
 ### User Profile
 
-The Cat Care app is designed for cat owners with one or more cats. After registering an account, users can create individual profiles for each of their cats. If the project is successful and other pet owners want to use the app, I plan to introduce categories for different types of animals. This way, pet profiles can be customized accordingly— for example, dog owners could track their dog’s daily walks.
+The Cat Care app is designed for cat owners with one or more cats. Users can create individual profiles for each of their cats. If the project is successful and other pet owners want to use the app, I plan to introduce categories for different types of animals. This way, pet profiles can be customized accordingly— for example, dog owners could track their dog’s daily walks.
 
 ### Features
 
@@ -43,10 +43,6 @@ The Cat Care app is designed for cat owners with one or more cats. After registe
 I will be developing a API for the Cat Care app using Node.js with Express, designed to be able to create, read, update, and delete data.
 
 ### Sitemap
-
-😺 **HOME PAGE**
-- Login
-- Create new account
 
 😺 **CATS PROFILES PAGE**
 - Individual cats profiles overview with (click to enter different cat profile detail page)
@@ -193,6 +189,9 @@ The project will run from February 10 to February 26.
 
 **Photo function:**
 A photo section where cat owners can store the cat photos. 
+
+**Authentication function:**
+Add home page for user to create account or log in to use the app.
 
 
 
