@@ -1,16 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.scss";
+import { useState } from 'react'
+import './App.scss'
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
-      <p>this is cat care app</p>
+
+      <p >
+        This is cat care
+      </p>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
