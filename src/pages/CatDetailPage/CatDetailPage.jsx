@@ -10,11 +10,18 @@ function CatDetailPage({ cat, fetchCat }) {
   if (!cat) return <p>No Cat Found</p>;
   return (
     <>
-      <article>
-        <img className="cat__photo" src={cat.photo} alt="cat photo" />
-        <h2>{cat.name}</h2>
-        <h3>{cat.birth_date.split("T")[0]}</h3>
-        <p>{cat.gender}</p>
+      <article className="cat">
+        <img className="cats__photo" src={cat.photo} alt="cat photo" />
+        <h2 className="cat__name">{cat.name}</h2>
+        <h3 className="cat__text">Birthday: {cat.birth_date.split("T")[0]}</h3>
+        <p className="cat__text">Gender: {cat.gender}</p>
+        <p className="cat__text">Color: {cat.color}</p>
+        <p className="cat__text">Weight: {cat.weight}kg</p>
+        <p className="cat__text">Intro: {cat.intro}</p>
+        <button className="button">Favorite Food</button>
+        <button className="button">Catlender</button>
+        <button className="button">Edit Profile</button>
+        <button className="button">Delete Profile</button>
       </article>
     </>
   );

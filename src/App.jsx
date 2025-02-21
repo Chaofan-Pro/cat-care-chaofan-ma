@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-
 import CatPage from "./pages/CatPage/CatPage";
 import CatDetailPage from "./pages/CatDetailPage/CatDetailPage";
 import FoodPage from "./pages/FoodPage/FoodPage";
 import FoodDetailPage from "./pages/FoodDetailPage/FoodDetailPage";
 import CatlenderPage from "./pages/CatlenderPage/CatlenderPage";
 import CatlenderDetailPage from "./pages/CatlenderDetailPage/CatlenderDetailPage";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 
 function App() {
   const baseUrl = import.meta.env.VITE_API_URL;
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <Header />
         <main>
           <Routes>
             <Route path="/" element={<CatPage baseUrl={baseUrl} />} />
@@ -50,6 +52,7 @@ function App() {
             />
           </Routes>
         </main>
+        <Footer />
       </BrowserRouter>
     </>
   );

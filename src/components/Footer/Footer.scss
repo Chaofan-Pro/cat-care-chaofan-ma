@@ -1,0 +1,19 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $primary-grey;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__icon {
+    margin: 1rem;
+  }
+}

@@ -22,19 +22,19 @@ function CatPage({ baseUrl }) {
   if (!cats) return <p>No Cat Found</p>;
 
   return (
-    <>
+    <section className="cats">
       {cats.map((cat) => (
         <Link to={`/cat/${cat.id}`} key={cat.id}>
-          <article>
-            <img className="cat__photo" src={cat.photo} alt="cat photo" />
-            <h2>{cat.name}</h2>
-            <h3>{cat.birth_date.split("T")[0]}</h3>
-            <p>{cat.gender}</p>
+          <article className="cats__container">
+            <img className="cats__photo" src={cat.photo} alt="cat photo" />
+            <h2 className="cats__name">{cat.name}</h2>
+            <h3 className="cats__birthday">{cat.birth_date.split("T")[0]}</h3>
+            <p className="cats__gender">{cat.gender}</p>
           </article>
         </Link>
       ))}
-      <button>Add Cat</button>
-    </>
+      <button className="button">Add Cat</button>
+    </section>
   );
 }
 

@@ -1,9 +1,38 @@
-.cat__photo {
-  height: 6.25rem;
-  width: 6.25rem;
-  object-fit: cover;
-  border-radius: 6.25rem;
-  &:hover {
-    opacity: 0.3;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.cats {
+  &__container {
+    margin-bottom: 2rem;
+  }
+  &__photo {
+    display: block;
+    margin: auto;
+    height: 6.25rem;
+    width: 6.25rem;
+    object-fit: cover;
+    border-radius: 6.25rem;
+    &:hover {
+      opacity: 0.3;
+    }
+  }
+  &__name {
+    text-align: center;
+    padding: 0.5rem;
+    color: $primary-black;
+    font-weight: 500;
+  }
+  &__birthday {
+    color: $primary-black;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+  &__gender {
+    color: $primary-black;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 300;
   }
 }
