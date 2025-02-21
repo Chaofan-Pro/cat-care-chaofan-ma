@@ -11,7 +11,7 @@ function CatDetailPage({ cat, fetchCat }) {
   return (
     <>
       <article className="cat">
-        <img className="cats__photo" src={cat.photo} alt="cat photo" />
+        <img className="cat__photo" src={cat.photo} alt="cat photo" />
         <h2 className="cat__name">{cat.name}</h2>
         <h3 className="cat__text">Birthday: {cat.birth_date.split("T")[0]}</h3>
         <p className="cat__text">Gender: {cat.gender}</p>
@@ -20,8 +20,6 @@ function CatDetailPage({ cat, fetchCat }) {
         <p className="cat__text">Intro: {cat.intro}</p>
         <button className="button">Favorite Food</button>
         <button className="button">Catlender</button>
-        <button className="button">Edit Profile</button>
-        <button className="button">Delete Profile</button>
       </article>
     </>
   );

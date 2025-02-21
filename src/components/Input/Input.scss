@@ -1,0 +1,43 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+
+.form {
+  &__label {
+    display: block;
+    font-size: 0.8125rem;
+    padding: 1rem 0 0.25rem 0;
+    font-weight: 600;
+  }
+
+  &__input {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    font-family: "Titillium Web", Arial, Helvetica, sans-serif;
+    padding: 0 1rem;
+    width: 100%;
+    height: 2.25rem;
+    border-radius: 20px;
+    box-shadow: 0 0 0px 1000px $primary-color inset;
+
+    border: 1px solid $primary-color;
+    &::placeholder {
+      background-color: none;
+      color: $primary-color;
+      font-weight: 400;
+    }
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $primary-color;
+    }
+    &--error {
+      border: 1px solid $primary-color;
+    }
+    &--add {
+      @extend .form__input;
+      &::placeholder {
+        color: $primary-color;
+      }
+    }
+  }
+}

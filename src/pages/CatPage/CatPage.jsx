@@ -33,7 +33,9 @@ function CatPage({ baseUrl }) {
           </article>
         </Link>
       ))}
-      <button className="button">Add Cat</button>
+      <Link to="/cat/add">
+        <button className="button">Add Cat</button>
+      </Link>
     </section>
   );
 }

@@ -1,0 +1,18 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+
+.form {
+  &__error {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    margin-top: 4px;
+  }
+  &__error-icon {
+    height: 1rem;
+  }
+  &__error-text {
+    color: red;
+    font-size: 0.75rem;
+  }
+}
