@@ -1,0 +1,9 @@
+.cat__photo {
+  height: 6.25rem;
+  width: 6.25rem;
+  object-fit: cover;
+  border-radius: 6.25rem;
+  &:hover {
+    opacity: 0.3;
+  }
+}
