@@ -1,17 +1,21 @@
 import "./AddCatPage.scss";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import { v2 as cloudinary } from 'cloudinary';
 import Input from "../../components/Input/Input";
+// const api_key = "661896341535683";
+// const cloud_name = "dzhnttkky";
 
 function AddCatPage({ baseUrl }) {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState(null);
   const [birthday, setBirthday] = useState("");
-  const [gender, setColor] = useState("");
-  const [color, setContactName] = useState("");
+  const [gender, setGender] = useState("");
+  const [color, setColor] = useState("");
   const [weight, setWeight] = useState("");
   const [intro, setIntro] = useState("");
 
@@ -28,7 +32,7 @@ function AddCatPage({ baseUrl }) {
     setNameValid(true);
   };
   const changePhotoHandle = (e) => {
-    setPhoto(e.target.value);
+    setPhoto(e.target.files[0]);
     setPhotoValid(true);
   };
   const changeBirthdayHandle = (e) => {
@@ -48,46 +52,47 @@ function AddCatPage({ baseUrl }) {
     setWeightValid(true);
   };
   const changeIntroHandle = (e) => {
-    setPhone(e.target.value);
-    setPhoneValid(true);
-  };
-  const changeEmailHandle = (e) => {
-    setEmail(e.target.value);
-    setEmailValid(true);
+    setIntro(e.target.value);
+    setIntroValid(true);
   };
 
   const submitHandle = async (e) => {
     e.preventDefault();
     setNameValid(!!name);
-    setAddressValid(!!address);
-    setCityValid(!!city);
-    setCountryValid(!!country);
-    setContactNameValid(!!contactName);
-    setContactPositionValid(!!contactPosition);
-    setPhoneValid(!!phone);
-    setEmailValid(!!email);
+    setPhotoValid(!!photo);
+    setBirthdayValid(!!birthday);
+    setGenderValid(!!gender);
+    setColorValid(!!color);
+    setWeightValid(!!weight);
+    setIntroValid(!!intro);
 
     if (
       !!name &&
-      !!address &&
-      !!city &&
-      !!country &&
-      !!contactName &&
-      !!contactPosition &&
-      !!phone &&
-      !!email
+      !!photo &&
+      !!birthday &&
+      !!gender &&
+      !!color &&
+      !!weight &&
+      !!intro
     ) {
       try {
-        await axios.post(baseUrl + `/api/warehouses`, {
-          warehouse_name: name,
-          address,
-          city,
-          country,
-          contact_name: contactName,
-          contact_position: contactPosition,
-          contact_phone: phone,
-          contact_email: email,
-        });
+        await axios.post(
+          baseUrl + `/api/cats`,
+          {
+            name,
+            photo,
+            birth_date: birthday,
+            gender,
+            color,
+            weight,
+            intro,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         navigate(-1);
       } catch (error) {
         console.error(error);
@@ -95,70 +100,84 @@ function AddCatPage({ baseUrl }) {
     }
   };
 
-  const warehouseDetails = [
+  const catDetails = [
     {
-      label: "Warehouse Name",
-      id: "warehouse_name",
+      label: "Name",
+      id: "name",
       value: name,
       isInputValid: isNameValid,
       changeInputHandle: changeNameHandle,
     },
+    // {
+    //   label: "Photo",
+    //   id: "photo",
+    //   value: photo,
+    //   isInputValid: isPhotoValid,
+    //   changeInputHandle: changePhotoHandle,
+    // },
     {
-      label: "Street Address",
-      id: "address",
-      value: address,
-      isInputValid: isAddressValid,
-      changeInputHandle: changeAddressHandle,
+      label: "Birthday",
+      id: "birthday",
+      value: birthday,
+      isInputValid: isBirthdayValid,
+      changeInputHandle: changeBirthdayHandle,
     },
     {
-      label: "City",
-      id: "city",
-      value: city,
-      isInputValid: isCityValid,
-      changeInputHandle: changeCityHandle,
+      label: "Gender",
+      id: "gender",
+      value: gender,
+      isInputValid: isGenderValid,
+      changeInputHandle: changeGenderHandle,
     },
     {
-      label: "Country",
-      id: "country",
-      value: country,
-      isInputValid: isCountryValid,
-      changeInputHandle: changeCountryHandle,
-    },
-  ];
-  const contactDetails = [
-    {
-      label: "Contact Name",
-      id: "contact_name",
-      value: contactName,
-      isInputValid: isContactNameValid,
-      changeInputHandle: changeContactNameHandle,
+      label: "Color",
+      id: "color",
+      value: color,
+      isInputValid: isColorValid,
+      changeInputHandle: changeColorHandle,
     },
     {
-      label: "Position",
-      id: "contact_position",
-      value: contactPosition,
-      isInputValid: isContactPositionValid,
-      changeInputHandle: changeContactPositionHandle,
+      label: "Weight",
+      id: "weight",
+      value: weight,
+      isInputValid: isWeightValid,
+      changeInputHandle: changeWeightHandle,
     },
     {
-      label: "Phone Number",
-      id: "contact_phone",
-      value: phone,
-      isInputValid: isPhoneValid,
-      changeInputHandle: changePhoneHandle,
-    },
-    {
-      label: "Email",
-      id: "contact_email",
-      value: email,
-      isInputValid: isEmailValid,
-      changeInputHandle: changeEmailHandle,
+      label: "Intro",
+      id: "intro",
+      value: intro,
+      isInputValid: isIntroValid,
+      changeInputHandle: changeIntroHandle,
     },
   ];
 
   return (
     <>
-      <article></article>
+      <form className="form" onSubmit={submitHandle}>
+        {catDetails.map((catDetail) => (
+          <Input
+            key={catDetail.id}
+            label={catDetail.label}
+            id={catDetail.id}
+            value={catDetail.value}
+            placeholder={catDetail.label}
+            isInputValid={catDetail.isInputValid}
+            changeInputHandle={catDetail.changeInputHandle}
+          />
+        ))}
+        <div>
+          <label htmlFor="photo">Photo</label>
+          <input
+            type="file"
+            name="photo"
+            id="photo"
+            accept="image/*"
+            onChange={changePhotoHandle}
+          />
+        </div>
+        <button className="button form__button">Submit</button>
+      </form>
     </>
   );
 }

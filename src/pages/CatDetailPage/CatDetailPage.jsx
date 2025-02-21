@@ -7,6 +7,8 @@ function CatDetailPage({ cat, fetchCat }) {
   useEffect(() => {
     fetchCat(id);
   }, [id]);
+//   console.log(id);
+
   if (!cat) return <p>No Cat Found</p>;
   return (
     <>
@@ -20,6 +22,7 @@ function CatDetailPage({ cat, fetchCat }) {
         <p className="cat__text">Intro: {cat.intro}</p>
         <button className="button">Favorite Food</button>
         <button className="button">Catlender</button>
+        <button className="button">Edit Profile</button>
       </article>
     </>
   );

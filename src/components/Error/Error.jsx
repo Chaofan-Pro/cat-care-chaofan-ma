@@ -1,11 +1,12 @@
 import "./Error.scss";
+import error from "../../../public/error.svg";
 
-const Error = ({ label, id, value, isInputValid, changeInputHandle }) => {
+const Error = () => {
   return (
     <div className="form__error">
       <img
         className="form__error-icon"
-        src="/src/assets/icons/error-24px.svg"
+        src={error}
         alt="error icon"
       />
       <p className="form__error-text">This field is required</p>
