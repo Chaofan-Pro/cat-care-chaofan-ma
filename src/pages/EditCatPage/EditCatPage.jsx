@@ -70,8 +70,18 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
       setIsValid({ ...isValid, photo: true });
     }
   };
+  const deleteCat = async (e) => {
+    e.preventDefault();
 
+    try {
+      await axios.delete(`${baseUrl}/api/cats/${id}`);
+      navigate("/cat");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   // Handle Form Submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -114,49 +124,55 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   if (!cat) return <p>Loading cat data...</p>;
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <PhotoUpload
-        label="Photo"
-        id="photo"
-        changeInputHandle={handlePhotoChange}
-        isInputValid={isValid.photo}
-        preview={photoPreview}
-      />
-      {[
-        { label: "Name", id: "name" },
-        { label: "Birthday", id: "birthday" },
-        { label: "Color", id: "color" },
-        { label: "Weight", id: "weight" },
-        { label: "Intro", id: "intro" },
-      ].map(({ label, id }) => (
-        <Input
-          key={id}
-          label={label}
-          id={id}
-          name={id}
-          value={formData[id]}
-          placeholder={label}
-          isInputValid={isValid[id]}
-          changeInputHandle={handleChange}
+    <>
+      <form className="form" onSubmit={handleSubmit}>
+        <PhotoUpload
+          label="Photo"
+          id="photo"
+          changeInputHandle={handlePhotoChange}
+          isInputValid={isValid.photo}
+          preview={photoPreview}
         />
-      ))}
-      {/* Select Dropdowns */}
-      <Select
-        label="Gender"
-        id="gender"
-        name="gender"
-        value={formData.gender}
-        isInputValid={isValid.gender}
-        changeInputHandle={handleChange}
-        options={[
-          { label: "Female", value: "Female" },
-          { label: "Male", value: "Male" },
-        ]}
-      />
-      {/* Submit Button */}
-      <button className="button form__button">Save Changes</button>
-      <button className="button form__button">Delete Profile</button>
-    </form>
+        {[
+          { label: "Name", id: "name" },
+          { label: "Birthday", id: "birthday" },
+          { label: "Color", id: "color" },
+          { label: "Weight", id: "weight" },
+          { label: "Intro", id: "intro" },
+        ].map(({ label, id }) => (
+          <Input
+            key={id}
+            label={label}
+            id={id}
+            name={id}
+            value={formData[id]}
+            placeholder={label}
+            isInputValid={isValid[id]}
+            changeInputHandle={handleChange}
+          />
+        ))}
+        {/* Select Dropdowns */}
+        <Select
+          label="Gender"
+          id="gender"
+          name="gender"
+          value={formData.gender}
+          isInputValid={isValid.gender}
+          changeInputHandle={handleChange}
+          options={[
+            { label: "Female", value: "Female" },
+            { label: "Male", value: "Male" },
+          ]}
+        />
+        {/* Submit Button */}
+        <button type="submit" className="button form__button">
+          Save Changes
+        </button>
+      </form>
+      <button onClick={deleteCat} className="button form__button">
+        Delete Profile
+      </button>{" "}
+    </>
   );
 }
 

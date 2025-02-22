@@ -11,7 +11,6 @@ const Select = ({
   options,
 }) => {
   const location = useLocation().pathname;
-  console.log(value);
   return (
     <div>
       <label className="form__label" htmlFor={id}>
