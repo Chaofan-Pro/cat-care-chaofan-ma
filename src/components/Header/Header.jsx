@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function Header() {
-  const { id } = useParams();
-//   console.log(id);
+
 
   return (
     <header className="header">

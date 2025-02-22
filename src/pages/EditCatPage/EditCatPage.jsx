@@ -1,15 +1,21 @@
-import "./AddCatPage.scss";
+import "./EditCatPage.scss";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
 
-function AddCatPage({ baseUrl }) {
+function EditCatPage({ baseUrl, cat, fetchCat }) {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [photoPreview, setPhotoPreview] = useState(null);
-  // Single State for Form Data
+
+  // Fetch cat data on component mount
+  useEffect(() => {
+    fetchCat(id);
+  }, [id]);
+
+  // State for form data
   const [formData, setFormData] = useState({
     name: "",
     photo: null,
@@ -19,6 +25,24 @@ function AddCatPage({ baseUrl }) {
     weight: "",
     intro: "",
   });
+
+  const [photoPreview, setPhotoPreview] = useState(null);
+
+  // Update form data when cat data is loaded
+  useEffect(() => {
+    if (cat) {
+      setFormData({
+        name: cat.name || "",
+        photo: cat.photo || null,
+        birthday: cat.birth_date.split("T")[0] || "",
+        gender: cat.gender || "",
+        color: cat.color || "",
+        weight: cat.weight || "",
+        intro: cat.intro || "",
+      });
+      setPhotoPreview(cat.photo);
+    }
+  }, [cat, baseUrl]);
 
   // Validation States
   const [isValid, setIsValid] = useState({
@@ -50,7 +74,7 @@ function AddCatPage({ baseUrl }) {
   // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData);
     // Validate Required Fields
     const newValidation = {
       name: !!formData.name,
@@ -77,69 +101,17 @@ function AddCatPage({ baseUrl }) {
       formDataToSend.append("weight", formData.weight);
       formDataToSend.append("intro", formData.intro);
       console.log(formDataToSend);
-      await axios.post(`${baseUrl}/api/cats`, formDataToSend, {
+
+      await axios.put(`${baseUrl}/api/cats/${id}`, formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       navigate(-1);
     } catch (error) {
       console.error(error);
     }
   };
 
-  // Input Fields
-  const inputDetails = [
-    {
-      label: "Name",
-      id: "name",
-      value: formData.name,
-      isValid: isValid.name,
-      placeholder: "Name",
-    },
-    {
-      label: "Birthday",
-      id: "birthday",
-      value: formData.birthday,
-      isValid: isValid.birthday,
-      placeholder: "YYYY-MM-DD",
-    },
-    {
-      label: "Color",
-      id: "color",
-      value: formData.color,
-      isValid: isValid.color,
-      placeholder: "Color",
-    },
-    {
-      label: "Weight(kg)",
-      id: "weight",
-      value: formData.weight,
-      isValid: isValid.weight,
-      placeholder: "Weight",
-    },
-    {
-      label: "Intro",
-      id: "intro",
-      value: formData.intro,
-      isValid: isValid.intro,
-      placeholder: "Intro",
-    },
-  ];
-
-  // Select Fields
-  const selectDetails = [
-    {
-      label: "Gender",
-      id: "gender",
-      value: formData.gender,
-      isValid: isValid.gender,
-      options: [
-        { label: "Please select", value: "" },
-        { label: "Female", value: "female" },
-        { label: "Male", value: "male" },
-      ],
-    },
-  ];
+  if (!cat) return <p>Loading cat data...</p>;
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -150,35 +122,42 @@ function AddCatPage({ baseUrl }) {
         isInputValid={isValid.photo}
         preview={photoPreview}
       />
-      {inputDetails.map((input) => (
+      {[
+        { label: "Name", id: "name" },
+        { label: "Birthday", id: "birthday" },
+        { label: "Color", id: "color" },
+        { label: "Weight", id: "weight" },
+        { label: "Intro", id: "intro" },
+      ].map(({ label, id }) => (
         <Input
-          key={input.id}
-          label={input.label}
-          id={input.id}
-          name={input.id}
-          value={input.value}
-          placeholder={input.placeholder}
-          isInputValid={input.isValid}
+          key={id}
+          label={label}
+          id={id}
+          name={id}
+          value={formData[id]}
+          placeholder={label}
+          isInputValid={isValid[id]}
           changeInputHandle={handleChange}
         />
       ))}
       {/* Select Dropdowns */}
-      {selectDetails.map((select) => (
-        <Select
-          key={select.id}
-          label={select.label}
-          id={select.id}
-          name={select.id}
-          value={select.value}
-          isInputValid={select.isValid}
-          changeInputHandle={handleChange}
-          options={select.options}
-        />
-      ))}
+      <Select
+        label="Gender"
+        id="gender"
+        name="gender"
+        value={formData.gender}
+        isInputValid={isValid.gender}
+        changeInputHandle={handleChange}
+        options={[
+          { label: "Female", value: "Female" },
+          { label: "Male", value: "Male" },
+        ]}
+      />
       {/* Submit Button */}
-      <button className="button form__button">Submit</button>
+      <button className="button form__button">Save Changes</button>
+      <button className="button form__button">Delete Profile</button>
     </form>
   );
 }
 
-export default AddCatPage;
+export default EditCatPage;

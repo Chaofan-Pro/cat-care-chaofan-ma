@@ -6,6 +6,7 @@ import axios from "axios";
 import CatPage from "./pages/CatPage/CatPage";
 import CatDetailPage from "./pages/CatDetailPage/CatDetailPage";
 import AddCatPage from "./pages/AddCatPage/AddCatPage";
+import EditCatPage from "./pages/EditCatPage/EditCatPage";
 import FoodPage from "./pages/FoodPage/FoodPage";
 import FoodDetailPage from "./pages/FoodDetailPage/FoodDetailPage";
 import CatlenderPage from "./pages/CatlenderPage/CatlenderPage";
@@ -39,11 +40,19 @@ function App() {
               path="/cat/:id"
               element={<CatDetailPage cat={cat} fetchCat={fetchCat} />}
             />
+            <Route
+              path="/cat/edit/:id"
+              element={
+                <EditCatPage baseUrl={baseUrl} cat={cat} fetchCat={fetchCat} />
+              }
+            />
+
             <Route path="/food" element={<FoodPage baseUrl={baseUrl} />} />
             <Route
               path="/food/:id"
               element={<FoodDetailPage baseUrl={baseUrl} />}
             />
+
             <Route
               path="/catlender"
               element={<CatlenderPage baseUrl={baseUrl} />}

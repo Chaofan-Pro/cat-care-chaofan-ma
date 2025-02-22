@@ -1,37 +1,40 @@
-import "./Input.scss";
+import "./Select.scss";
 import Error from "../Error/Error";
 import { useLocation } from "react-router-dom";
 
-const Input = ({
+const Select = ({
   label,
   id,
-  type = "text",
   value,
-  placeholder,
   isInputValid,
   changeInputHandle,
+  options,
 }) => {
   const location = useLocation().pathname;
-
+  console.log(value);
   return (
-    <div className="form__group">
+    <div>
       <label className="form__label" htmlFor={id}>
         {label}
       </label>
-      <input
+      <select
         className={`form__input ${isInputValid ? "" : "form__input--error"} ${
           location.includes("add") ? "form__input--add" : ""
         }`}
-        type={type}
-        id={id}
         name={id}
+        id={id}
         value={value}
         onChange={changeInputHandle}
-        placeholder={placeholder}
-      />
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option.value} className="option">
+            {option.label}
+          </option>
+        ))}
+      </select>
       {!isInputValid && <Error />}
     </div>
   );
 };
 
-export default Input;
+export default Select;
