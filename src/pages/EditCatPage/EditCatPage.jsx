@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
+import TextArea from "../../components/TextArea/TextArea";
 
 function EditCatPage({ baseUrl, cat, fetchCat }) {
   const { id } = useParams();
@@ -170,7 +171,14 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
             { label: "Male", value: "Male" },
           ]}
         />
-        {/* Submit Button */}
+        <TextArea
+          label="Intro"
+          id="intro"
+          name="intro"
+          value={formData.intro}
+          isInputValid={isValid.intro}
+          changeInputHandle={handleChange}
+        />
         <button type="submit" className="form__button">
           Save Changes
         </button>

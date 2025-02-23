@@ -10,7 +10,7 @@
 }
 
 body {
-  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
   margin-top: 4rem;
   margin-bottom: 6rem;
 }
@@ -30,7 +30,7 @@ button {
 .icon {
   height: 2rem;
   width: 2rem;
-  &:hover{
+  &:hover {
     color: $primary-darker-grey;
   }
 }
@@ -45,9 +45,9 @@ button {
   background-color: $primary-color;
   color: $primary-white;
   font-weight: 300;
-  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  &:hover{
+  font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
+  &:hover {
     background-color: $primary-darker-grey;
     color: $primary-white;
-    }
+  }
 }

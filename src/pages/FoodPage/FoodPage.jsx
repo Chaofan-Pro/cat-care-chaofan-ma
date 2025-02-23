@@ -25,13 +25,16 @@ function FoodPage({ baseUrl }) {
     <>
       {foods.map((food) => (
         <article className="food">
-            <img className="food__photo" src={food.food_photo} alt="" />
+          <img className="food__photo" src={food.food_photo} alt="" />
           <div className="food__info">
             <p className="food__brand">{food.food_brand}</p>
             <p className="food__name">{food.food_name}</p>
           </div>
         </article>
       ))}
+      <Link to="/food/add">
+        <button className="button">Add Food</button>
+      </Link>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import "./PhotoUpload.scss";
 import Error from "../Error/Error";
 import catIcon from "/cat_icon.png";
+import foodIcon from "/food.png";
+import { useLocation } from "react-router-dom";
 
 const PhotoUpload = ({
   label,
@@ -9,18 +11,31 @@ const PhotoUpload = ({
   changeInputHandle,
   preview,
 }) => {
+  const location = useLocation().pathname;
+
   return (
     <div className="form__photo">
       {preview ? (
         <img src={preview} alt="Preview" className="cat__photo" />
-      ) : (
+      ) : location === "/cat/add" ? (
         <img
           src={catIcon}
           alt="Preview"
           className="cat__photo cat__photo-preview"
         />
+      ) : (
+        <img
+          src={foodIcon}
+          alt="Preview"
+          className="cat__photo cat__photo-preview"
+        />
       )}
-      <label className={isInputValid ? "form__photo-label" : "form__photo-label--error"} htmlFor={id}>
+      <label
+        className={
+          isInputValid ? "form__photo-label" : "form__photo-label--error"
+        }
+        htmlFor={id}
+      >
         {label}
       </label>
       <input

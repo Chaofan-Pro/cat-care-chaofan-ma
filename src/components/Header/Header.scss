@@ -3,11 +3,12 @@
 @use "../../styles/partials/global" as *;
 
 .header {
-  margin-top: 1rem;
+  padding-top: 1rem;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  background-color: $primary-white;
   &__container {
     display: flex;
     justify-content: space-between;

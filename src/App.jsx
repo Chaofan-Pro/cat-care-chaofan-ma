@@ -8,6 +8,7 @@ import CatDetailPage from "./pages/CatDetailPage/CatDetailPage";
 import AddCatPage from "./pages/AddCatPage/AddCatPage";
 import EditCatPage from "./pages/EditCatPage/EditCatPage";
 import FoodPage from "./pages/FoodPage/FoodPage";
+import AddFoodPage from "./pages/AddFoodPage/AddFoodPage";
 import FoodDetailPage from "./pages/FoodDetailPage/FoodDetailPage";
 import CatlenderPage from "./pages/CatlenderPage/CatlenderPage";
 import CatlenderDetailPage from "./pages/CatlenderDetailPage/CatlenderDetailPage";
@@ -58,6 +59,10 @@ function App() {
             />
 
             <Route path="/food" element={<FoodPage baseUrl={baseUrl} />} />
+            <Route
+              path="/food/add"
+              element={<AddFoodPage baseUrl={baseUrl} />}
+            />
             <Route
               path="/food/:id"
               element={<FoodDetailPage baseUrl={baseUrl} />}

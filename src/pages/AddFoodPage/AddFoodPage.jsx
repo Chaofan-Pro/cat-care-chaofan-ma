@@ -1,13 +1,12 @@
-import "./AddCatPage.scss";
+import "./AddFoodPage.scss";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
-import TextArea from "../../components/TextArea/TextArea";
 
-function AddCatPage({ baseUrl }) {
+function AddFoodPage({ baseUrl }) {
   const navigate = useNavigate();
   const [photoPreview, setPhotoPreview] = useState(null);
   // Single State for Form Data
@@ -90,57 +89,36 @@ function AddCatPage({ baseUrl }) {
   // Input Fields
   const inputDetails = [
     {
-      label: "Name",
+      label: "Food Brand",
       id: "name",
       value: formData.name,
       isValid: isValid.name,
-      placeholder: "Name",
+      placeholder: "Food Brand",
     },
     {
-      label: "Birthday",
+      label: "Food Name",
       id: "birthday",
       value: formData.birthday,
       isValid: isValid.birthday,
-      placeholder: "YYYY-MM-DD",
-    },
-    {
-      label: "Color",
-      id: "color",
-      value: formData.color,
-      isValid: isValid.color,
-      placeholder: "Color",
-    },
-    {
-      label: "Weight(kg)",
-      id: "weight",
-      value: formData.weight,
-      isValid: isValid.weight,
-      placeholder: "Weight",
+      placeholder: "Food Name",
     },
   ];
 
   // Select Fields
   const selectDetails = [
     {
-      label: "Gender",
-      id: "gender",
+      label: "Food Type",
+      id: "food_type",
       value: formData.gender,
       isValid: isValid.gender,
       options: [
         { label: "Please select", value: "" },
-        { label: "Female", value: "female" },
-        { label: "Male", value: "male" },
+        { label: "Dry Food", value: "Dry Food" },
+        { label: "Wet Food", value: "Wet Food" },
+        { label: "Snack", value: "Snack" },
       ],
     },
   ];
-
-  const textareaDetails = {
-    label: "Intro",
-    id: "intro",
-    value: formData.intro,
-    isValid: isValid.intro,
-    placeholder: "Intro",
-  };
 
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -176,19 +154,10 @@ function AddCatPage({ baseUrl }) {
           options={select.options}
         />
       ))}
-      <TextArea
-        key={textareaDetails.id}
-        label={textareaDetails.label}
-        id={textareaDetails.id}
-        name={textareaDetails.id}
-        value={textareaDetails.value}
-        placeholder={textareaDetails.placeholder}
-        isInputValid={textareaDetails.isValid}
-        changeInputHandle={handleChange}
-      />
+      {/* Submit Button */}
       <button className="form__button">Submit</button>
     </form>
   );
 }
 
-export default AddCatPage;
+export default AddFoodPage;
