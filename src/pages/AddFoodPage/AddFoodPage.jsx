@@ -5,30 +5,27 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import Select from "../../components/Select/Select";
 import PhotoUpload from "../../components/PhotoUpload/PhotoUpload";
+import TextArea from "../../components/TextArea/TextArea";
 
 function AddFoodPage({ baseUrl }) {
   const navigate = useNavigate();
   const [photoPreview, setPhotoPreview] = useState(null);
   // Single State for Form Data
   const [formData, setFormData] = useState({
-    name: "",
-    photo: null,
-    birthday: "",
-    gender: "",
-    color: "",
-    weight: "",
-    intro: "",
+    foodName: "",
+    foodBrand: "",
+    foodPhoto: null,
+    foodType: "",
+    foodDescription: "",
   });
 
   // Validation States
   const [isValid, setIsValid] = useState({
-    name: true,
-    photo: true,
-    birthday: true,
-    gender: true,
-    color: true,
-    weight: true,
-    intro: true,
+    foodName: true,
+    foodBrand: true,
+    foodPhoto: true,
+    foodType: true,
+    foodDescription: true,
   });
 
   // Handle Input Changes (Text Inputs)
@@ -41,9 +38,9 @@ function AddFoodPage({ baseUrl }) {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData({ ...formData, photo: file });
+      setFormData({ ...formData, foodPhoto: file });
       setPhotoPreview(URL.createObjectURL(file)); // Preview Image
-      setIsValid({ ...isValid, photo: true });
+      setIsValid({ ...isValid, foodPhoto: true });
     }
   };
 
@@ -53,13 +50,11 @@ function AddFoodPage({ baseUrl }) {
 
     // Validate Required Fields
     const newValidation = {
-      name: !!formData.name,
-      photo: !!formData.photo,
-      birthday: !!formData.birthday,
-      gender: !!formData.gender,
-      color: !!formData.color,
-      weight: !!formData.weight,
-      intro: !!formData.intro,
+      foodName: !!formData.foodName,
+      foodBrand: !!formData.foodBrand,
+      foodPhoto: !!formData.foodPhoto,
+      foodType: !!formData.foodType,
+      foodDescription: !!formData.foodDescription,
     };
     setIsValid(newValidation);
 
@@ -69,17 +64,14 @@ function AddFoodPage({ baseUrl }) {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("photo", formData.photo);
-      formDataToSend.append("birth_date", formData.birthday);
-      formDataToSend.append("gender", formData.gender);
-      formDataToSend.append("color", formData.color);
-      formDataToSend.append("weight", formData.weight);
-      formDataToSend.append("intro", formData.intro);
-      await axios.post(`${baseUrl}/api/cats`, formDataToSend, {
+      formDataToSend.append("food_name", formData.foodName);
+      formDataToSend.append("food_brand", formData.foodBrand);
+      formDataToSend.append("food_photo", formData.foodPhoto);
+      formDataToSend.append("food_type", formData.foodType);
+      formDataToSend.append("food_description", formData.foodDescription);
+      await axios.post(`${baseUrl}/api/food`, formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       navigate(-1);
     } catch (error) {
       console.error(error);
@@ -90,16 +82,16 @@ function AddFoodPage({ baseUrl }) {
   const inputDetails = [
     {
       label: "Food Brand",
-      id: "name",
-      value: formData.name,
-      isValid: isValid.name,
+      id: "foodBrand",
+      value: formData.foodBrand,
+      isValid: isValid.foodBrand,
       placeholder: "Food Brand",
     },
     {
       label: "Food Name",
-      id: "birthday",
-      value: formData.birthday,
-      isValid: isValid.birthday,
+      id: "foodName",
+      value: formData.foodName,
+      isValid: isValid.foodName,
       placeholder: "Food Name",
     },
   ];
@@ -108,9 +100,9 @@ function AddFoodPage({ baseUrl }) {
   const selectDetails = [
     {
       label: "Food Type",
-      id: "food_type",
-      value: formData.gender,
-      isValid: isValid.gender,
+      id: "foodType",
+      value: formData.foodType,
+      isValid: isValid.foodType,
       options: [
         { label: "Please select", value: "" },
         { label: "Dry Food", value: "Dry Food" },
@@ -126,7 +118,7 @@ function AddFoodPage({ baseUrl }) {
         label="Photo"
         id="photo"
         changeInputHandle={handlePhotoChange}
-        isInputValid={isValid.photo}
+        isInputValid={isValid.foodPhoto}
         preview={photoPreview}
       />
       {inputDetails.map((input) => (
@@ -154,6 +146,15 @@ function AddFoodPage({ baseUrl }) {
           options={select.options}
         />
       ))}
+      <TextArea
+        label="Food Description"
+        id="foodDescription"
+        name="food description"
+        placeholder="food description"
+        value={formData.foodDescription}
+        isInputValid={isValid.foodDescription}
+        changeInputHandle={handleChange}
+      />
       {/* Submit Button */}
       <button className="form__button">Submit</button>
     </form>

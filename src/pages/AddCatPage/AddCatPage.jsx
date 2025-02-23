@@ -177,7 +177,6 @@ function AddCatPage({ baseUrl }) {
         />
       ))}
       <TextArea
-        key={textareaDetails.id}
         label={textareaDetails.label}
         id={textareaDetails.id}
         name={textareaDetails.id}
