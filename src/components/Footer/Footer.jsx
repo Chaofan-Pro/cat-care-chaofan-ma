@@ -1,7 +1,7 @@
 import "./Footer.scss";
-import catlender from "../../../public/calendar.svg";
-import food from "../../../public/food.svg";
-import home from "../../../public/home.svg";
+import catlender from "/calendar.svg";
+import food from "/food.svg";
+import home from "/home.svg";
 import { Link } from "react-router-dom";
 
 function Footer() {

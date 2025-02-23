@@ -18,7 +18,7 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   // State for form data
   const [formData, setFormData] = useState({
     name: "",
-    photo: null,
+    photo: "",
     birthday: "",
     gender: "",
     color: "",
@@ -27,13 +27,13 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   });
 
   const [photoPreview, setPhotoPreview] = useState(null);
-
+  const [photoFile, setPhotoFile] = useState(null);
   // Update form data when cat data is loaded
   useEffect(() => {
     if (cat) {
       setFormData({
         name: cat.name || "",
-        photo: cat.photo || null,
+        photo: cat.photo || "",
         birthday: cat.birth_date.split("T")[0] || "",
         gender: cat.gender || "",
         color: cat.color || "",
@@ -65,11 +65,14 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setFormData({ ...formData, photo: file });
+      setPhotoFile(file);
       setPhotoPreview(URL.createObjectURL(file)); // Preview Image
       setIsValid({ ...isValid, photo: true });
+    } else {
+      setPhotoFile(null);
     }
   };
+
   const deleteCat = async (e) => {
     e.preventDefault();
 
@@ -84,11 +87,10 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Validate Required Fields
+
     const newValidation = {
       name: !!formData.name,
-      photo: !!formData.photo,
+      photo: !!(photoFile || formData.photo),
       birthday: !!formData.birthday,
       gender: !!formData.gender,
       color: !!formData.color,
@@ -103,14 +105,18 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
 
     try {
       const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("photo", formData.photo);
-      formDataToSend.append("birth_date", formData.birthday);
-      formDataToSend.append("gender", formData.gender);
-      formDataToSend.append("color", formData.color);
-      formDataToSend.append("weight", formData.weight);
-      formDataToSend.append("intro", formData.intro);
-      console.log(formDataToSend);
+      formDataToSend.append("name", formData.name || "");
+      formDataToSend.append("birth_date", formData.birthday || "");
+      formDataToSend.append("gender", formData.gender || "");
+      formDataToSend.append("color", formData.color || "");
+      formDataToSend.append("weight", formData.weight || "");
+      formDataToSend.append("intro", formData.intro || "");
+
+      if (photoFile) {
+        formDataToSend.append("photo", photoFile); // Append file
+      } else if (formData.photo) {
+        formDataToSend.append("photo", formData.photo); // Append URL
+      }
 
       await axios.put(`${baseUrl}/api/cats/${id}`, formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -146,7 +152,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
             id={id}
             name={id}
             value={formData[id]}
-            placeholder={label}
             isInputValid={isValid[id]}
             changeInputHandle={handleChange}
           />
@@ -160,16 +165,17 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
           isInputValid={isValid.gender}
           changeInputHandle={handleChange}
           options={[
+            { label: "Please select", value: "" },
             { label: "Female", value: "Female" },
             { label: "Male", value: "Male" },
           ]}
         />
         {/* Submit Button */}
-        <button type="submit" className="button form__button">
+        <button type="submit" className="form__button">
           Save Changes
         </button>
       </form>
-      <button onClick={deleteCat} className="button form__button">
+      <button onClick={deleteCat} className="button">
         Delete Profile
       </button>{" "}
     </>

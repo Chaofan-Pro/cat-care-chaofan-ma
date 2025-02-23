@@ -76,7 +76,6 @@ function AddCatPage({ baseUrl }) {
       formDataToSend.append("color", formData.color);
       formDataToSend.append("weight", formData.weight);
       formDataToSend.append("intro", formData.intro);
-      console.log(formDataToSend);
       await axios.post(`${baseUrl}/api/cats`, formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -176,7 +175,7 @@ function AddCatPage({ baseUrl }) {
         />
       ))}
       {/* Submit Button */}
-      <button className="button form__button">Submit</button>
+      <button className="form__button">Submit</button>
     </form>
   );
 }

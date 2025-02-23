@@ -1,5 +1,5 @@
 import "./Error.scss";
-import error from "../../../public/error.svg";
+import error from "/error.svg";
 
 const Error = () => {
   return (

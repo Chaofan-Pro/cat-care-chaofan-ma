@@ -1,6 +1,6 @@
 import "./PhotoUpload.scss";
 import Error from "../Error/Error";
-import catIcon from "../../../public/cat_icon.png";
+import catIcon from "/cat_icon.png";
 
 const PhotoUpload = ({
   label,
@@ -14,13 +14,17 @@ const PhotoUpload = ({
       {preview ? (
         <img src={preview} alt="Preview" className="cat__photo" />
       ) : (
-        <img src={catIcon} alt="Preview" className="cat__photo" />
+        <img
+          src={catIcon}
+          alt="Preview"
+          className="cat__photo cat__photo-preview"
+        />
       )}
-      <label className="form__label" htmlFor={id}>
+      <label className={isInputValid ? "form__photo-label" : "form__photo-label--error"} htmlFor={id}>
         {label}
       </label>
       <input
-        className="form__photo-button"
+        className="file-upload"
         type="file"
         id={id}
         name={id}

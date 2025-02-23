@@ -16,6 +16,7 @@
     border-radius: 6.25rem;
     &:hover {
       opacity: 0.3;
+      color: $primary-color;
     }
   }
   &__name {

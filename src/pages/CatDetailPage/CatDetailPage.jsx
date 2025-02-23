@@ -1,5 +1,5 @@
 import "./CatDetailPage.scss";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
 
 function CatDetailPage({ cat, fetchCat }) {

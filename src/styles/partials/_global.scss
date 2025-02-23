@@ -16,7 +16,7 @@ body {
 }
 
 main {
-  margin: 0 1rem;
+  margin: 0 1.5rem;
 }
 
 a {
@@ -34,7 +34,7 @@ button {
 
 .button {
   display: block;
-  width: calc(100vw - 2rem);
+  width: 100%;
   margin: 1rem 0;
   padding: 0.5rem;
   border-radius: 1.5rem;
@@ -43,4 +43,8 @@ button {
   color: $primary-white;
   font-weight: 300;
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  &:hover{
+    background-color: $primary-darker-grey;
+    color: $primary-white;
+    }
 }
