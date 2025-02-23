@@ -1,5 +1,5 @@
 import "./Header.scss";
-import arrow from "/arrow.svg";
+import BackIcon from "../BackIcon/BackIcon";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 function Header() {
@@ -9,7 +9,7 @@ function Header() {
   ) : (
     <header className="header">
       <Link to={-1}>
-        <img className="icon header__icon" src={arrow} alt="callender icon" />
+        <BackIcon />
       </Link>
     </header>
   );
