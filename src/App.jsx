@@ -17,11 +17,21 @@ import Header from "./components/Header/Header";
 function App() {
   const baseUrl = import.meta.env.VITE_API_URL;
   const [cat, setCat] = useState(null);
+  const [food, setFood] = useState(null);
 
   const fetchCat = async (id) => {
     try {
       const { data } = await axios.get(baseUrl + `/api/cats/${id}`);
       setCat(data);
+    } catch (error) {
+      console.error("ERROR: " + error);
+    }
+  };
+
+  const fetchFood = async (id) => {
+    try {
+      const { data } = await axios.get(baseUrl + `/api/food/${id}`);
+      setFood(data);
     } catch (error) {
       console.error("ERROR: " + error);
     }

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 function Header() {
   const location = useLocation().pathname;
-  console.log(location);
   return location === "/cat" ? (
     <header></header>
   ) : (

@@ -15,5 +15,8 @@
   }
   &__icon {
     margin: 1rem;
+    &:hover {
+      fill: $primary-darker-grey;
+    }
   }
 }

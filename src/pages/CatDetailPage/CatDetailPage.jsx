@@ -7,7 +7,6 @@ function CatDetailPage({ cat, fetchCat }) {
   useEffect(() => {
     fetchCat(id);
   }, [id]);
-  //   console.log(id);
 
   if (!cat) return <p>No Cat Found</p>;
   return (

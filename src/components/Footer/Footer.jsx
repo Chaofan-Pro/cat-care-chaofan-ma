@@ -1,22 +1,22 @@
 import "./Footer.scss";
 import catlender from "/calendar.svg";
-import food from "/food.svg";
-import home from "/home.svg";
+import HomeIcon from "../HomeIcon/HomeIcon";
+import FoodIcon from "../FoodIcon/FoodIcon";
+import CatlenderIcon from "../CatlenderIcon/CatlenderIcon";
 import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
-        {" "}
         <Link to="/cat">
-          <img className="icon footer__icon" src={home} alt="callender icon" />
+          <HomeIcon />
         </Link>
         <Link to="/food">
-          <img className="icon footer__icon" src={food} alt="home icon" />
+          <FoodIcon />
         </Link>
         <Link to="/catlender">
-          <img className="icon footer__icon" src={catlender} alt="food icon" />
+          <CatlenderIcon />
         </Link>
       </div>
     </footer>
