@@ -53,7 +53,20 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
       <article className="fooddetail" key={food.id}>
         <img className="fooddetail__photo" src={food.food_photo} alt="" />
         <div className="fooddetail__info">
-          <p className="fooddetail__brand">{food.food_brand}</p>
+          <div className="food__title">
+            <p className="fooddetail__brand">{food.food_brand}</p>
+            <p
+              className={
+                food.food_type === "Dry Food"
+                  ? "food__type--dry-food"
+                  : food.food_type === "Wet Food"
+                  ? "food__type--wet-food"
+                  : "food__type--snack"
+              }
+            >
+              {food.food_type}
+            </p>
+          </div>
           <p className="fooddetail__name">{food.food_name}</p>
           <p className="fooddetail__description">{food.food_description}</p>
           {ratings &&
