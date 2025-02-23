@@ -77,12 +77,15 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
                       )
                     )}
                   </p>
-                <p className="fooddetail__comment">{rating.comment}</p>
+                  <p className="fooddetail__comment">{rating.comment}</p>
                 </div>
               </div>
             ))}
         </div>
-        <button className="button">Edit Food</button>
+        <Link to={`/food/edit/${id}`}>
+          <button className="button">Edit Food</button>
+        </Link>
+        <button className="button">Edit Rating</button>
         <button className="button">Add Rating</button>
       </article>
     </>

@@ -59,3 +59,27 @@ button {
     }
   }
 }
+
+.food__type{
+  font-size: 0.6rem;
+  width: 4rem;
+  padding: 0.2rem;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: 500;
+  &--dry-food{
+    @extend .food__type;
+    background-color: $secondary-green;
+    color: $secondary-darker-green;
+  }
+  &--wet-food{
+    @extend .food__type;
+    background-color: $secondary-blue;
+    color: $secondary-darker-blue;
+  }
+  &--snack{
+    @extend .food__type;
+    background-color: $secondary-orange;
+    color: $secondary-darker-orange;
+  }
+}

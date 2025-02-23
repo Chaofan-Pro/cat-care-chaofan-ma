@@ -23,6 +23,11 @@
       opacity: 0.7;
     }
   }
+  &__title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__photo {
     display: block;
     margin: 1rem;
