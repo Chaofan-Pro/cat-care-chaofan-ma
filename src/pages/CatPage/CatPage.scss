@@ -6,18 +6,18 @@
   margin-top: 5rem;
   &__container {
     margin-bottom: 2rem;
-    &:hover{
-      .cats__photo{
+    &:hover {
+      .cats__photo {
         opacity: 0.5;
       }
-      .cats__name{
-        color:$primary-color
+      .cats__name {
+        color: $primary-darker-grey;
       }
-      .cats__birthday{
-        color:$primary-color
+      .cats__birthday {
+        color: $primary-darker-grey;
       }
-      .cats__gender{
-        color:$primary-color
+      .cats__gender {
+        color: $primary-darker-grey;
       }
     }
   }

@@ -32,7 +32,7 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
   return (
     <>
       <article className="fooddetail" key={food.id}>
-        <img className="food__photo fooddetail__photo" src={food.food_photo} alt="" />
+        <img className="fooddetail__photo" src={food.food_photo} alt="" />
         <div className="food__info">
           <p className="food__brand">{food.food_brand}</p>
           <p className="food__name">{food.food_name}</p>

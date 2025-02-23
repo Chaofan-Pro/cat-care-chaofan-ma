@@ -6,7 +6,7 @@
   background-color: $primary-grey;
   border-radius: 1rem;
   display: flex;
-  height: 8.25rem;
+  height: 10rem;
   margin-top: 1rem;
   color: $primary-black;
   &:hover {
@@ -21,10 +21,10 @@
   &__photo {
     display: block;
     margin: 1rem;
-    height: 6.25rem;
-    width: 6.25rem;
+    height: 8rem;
+    width: 30%;
     object-fit: cover;
-    border-radius: 6.25rem;
+    border-radius: 1rem;
     &:hover {
       opacity: 0.3;
       color: $primary-color;
@@ -32,16 +32,22 @@
   }
   &__info {
     margin: 1rem 1rem 1rem 0;
+    width: 70%;
   }
   &__brand {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+  &__name {
+    font-size: 0.8rem;
+    padding-bottom: 0.5rem;
   }
   &__rating {
     display: flex;
     align-items: center;
   }
   &__rating-name {
-    font-size: 0.825rem;
+    font-size: 0.8rem;
     padding-right: 0.5rem;
+    width: 3rem;
   }
 }
