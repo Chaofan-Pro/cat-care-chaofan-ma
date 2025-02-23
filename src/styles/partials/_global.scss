@@ -36,11 +36,12 @@ button {
 }
 
 .button {
+  font-size: 0.8rem;
   display: block;
   width: 100%;
   margin: 1rem 0;
   padding: 0.5rem;
-  border-radius: 1.5rem;
+  border-radius: 1.8rem;
   border: none;
   background-color: $primary-color;
   color: $primary-white;
@@ -49,5 +50,12 @@ button {
   &:hover {
     background-color: $primary-darker-grey;
     color: $primary-white;
+  }
+  &--delete {
+    @extend .button;
+    background-color: $primary-darker-grey;
+    &:hover {
+      background-color: $primary-red;
+    }
   }
 }

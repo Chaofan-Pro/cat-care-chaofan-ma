@@ -4,8 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function FoodPage({ baseUrl }) {
-  const [foods, setFoods] = useState(null);
+  const [foods, setFoods] = useState([]);
   const [ratings, setRatings] = useState({});
+  const [cats, setCats] = useState({});
 
   const fetchFoods = async () => {
     try {
@@ -28,6 +29,18 @@ function FoodPage({ baseUrl }) {
     }
   };
 
+  const fetchCats = async (id) => {
+    try {
+      const { data } = await axios.get(`${baseUrl}/api/cats/${id}`);
+      setCats((prevCats) => ({
+        ...prevCats,
+        [id]: data,
+      }));
+    } catch (error) {
+      console.error("ERROR: " + error);
+    }
+  };
+
   useEffect(() => {
     fetchFoods();
   }, [baseUrl]);
@@ -40,13 +53,24 @@ function FoodPage({ baseUrl }) {
     }
   }, [foods]);
 
+  useEffect(() => {
+    Object.values(ratings).forEach((ratingList) => {
+      ratingList.forEach((rating) => {
+        fetchCats(rating.cat_id);
+      });
+    });
+  }, [ratings]);
+
+  console.log(ratings);
+  console.log(cats);
+
   if (!foods) return <p>No Food Found</p>;
 
   return (
     <>
       {foods.map((food) => (
         <Link to={`/food/${food.id}`} key={food.id}>
-          <article className="food" key={food.id}>
+          <article className="food">
             <img className="food__photo" src={food.food_photo} alt="" />
             <div className="food__info">
               <p className="food__brand">{food.food_brand}</p>
@@ -54,7 +78,15 @@ function FoodPage({ baseUrl }) {
               {ratings[food.id] &&
                 ratings[food.id].map((rating) => (
                   <div className="food__rating" key={rating.id}>
-                    <p className="food__rating-name">{rating.cat_name}</p>
+                    {cats[rating.cat_id] && (
+                      <img
+                        className="food__cat-photo"
+                        src={
+                          cats[rating.cat_id].photo
+                        }
+                        alt={cats[rating.cat_id].name}
+                      />
+                    )}
                     <p className="food__score">
                       {Array.from(
                         { length: Math.round(rating.rating) },

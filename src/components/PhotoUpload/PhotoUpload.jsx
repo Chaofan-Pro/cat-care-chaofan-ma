@@ -1,7 +1,7 @@
 import "./PhotoUpload.scss";
 import Error from "../Error/Error";
-import catIcon from "/cat_icon.png";
-import foodIcon from "/food.png";
+import catIcon from "../../assets/icons/cat_icon.png";
+import foodIcon from "../../assets/icons/food.png";
 import { useLocation } from "react-router-dom";
 
 const PhotoUpload = ({

@@ -2,6 +2,8 @@ import "./CatPage.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import femaleIcon from "/src/assets/icons/female.svg";
+import maleIcon from "/src/assets/icons/male.svg";
 
 function CatPage({ baseUrl }) {
   const [cats, setCats] = useState(null);
@@ -50,11 +52,29 @@ function CatPage({ baseUrl }) {
           <Link to={`/cat/${cat.id}`} key={cat.id}>
             <article className="cats__container">
               <img className="cats__photo" src={cat.photo} alt="cat photo" />
-              <h2 className="cats__name">{cat.name}</h2>
+              <div className="cats__row">
+                <h2 className="cats__name">{cat.name}</h2>
+                {cat.gender === "Female" ? (
+                  <img
+                    className="cats__gender"
+                    src={femaleIcon}
+                    alt={cat.gender}
+                  />
+                ) : (
+                  <img
+                    className="cats__gender"
+                    src={maleIcon}
+                    alt={cat.gender}
+                  />
+                )}
+              </div>
               <p className="cats__birthday">
-                {age.years} year {age.months} month {age.days} day
+                {age.years > 0 &&
+                  `${age.years} year${age.years > 1 ? "s" : ""} `}
+                {age.months > 0 &&
+                  `${age.months} month${age.months > 1 ? "s" : ""} `}
+                {age.days > 0 && `${age.days} day${age.days > 1 ? "s" : ""}`}
               </p>
-              <p className="cats__gender">{cat.gender}</p>
             </article>
           </Link>
         );

@@ -21,6 +21,12 @@
       }
     }
   }
+  &__row{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+  }
   &__photo {
     display: block;
     margin: auto;
@@ -43,9 +49,13 @@
     font-size: 1rem;
   }
   &__gender {
-    color: $primary-black;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 300;
+    // color: $primary-black;
+    // text-align: center;
+    // font-size: 1rem;
+    // font-weight: 300;
+    height: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
   }
 }

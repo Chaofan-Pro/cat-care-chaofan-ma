@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 
 function FoodDetailPage({ baseUrl, food, fetchFood }) {
   const [ratings, setRatings] = useState([]);
+  const [cats, setCats] = useState({});
 
   const { id } = useParams();
 
@@ -12,6 +13,18 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
     try {
       const { data } = await axios.get(`${baseUrl}/api/food/${id}/rating`);
       setRatings(data);
+    } catch (error) {
+      console.error("ERROR: " + error);
+    }
+  };
+
+  const fetchCats = async (id) => {
+    try {
+      const { data } = await axios.get(`${baseUrl}/api/cats/${id}`);
+      setCats((prevCats) => ({
+        ...prevCats,
+        [id]: data,
+      }));
     } catch (error) {
       console.error("ERROR: " + error);
     }
@@ -27,34 +40,50 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
     }
   }, [food]);
 
+  useEffect(() => {
+    ratings.forEach((rating) => {
+      fetchCats(rating.cat_id);
+    });
+  }, [ratings]);
+
   if (!food) return <p>No Food Found</p>;
 
   return (
     <>
       <article className="fooddetail" key={food.id}>
         <img className="fooddetail__photo" src={food.food_photo} alt="" />
-        <div className="food__info">
-          <p className="food__brand">{food.food_brand}</p>
-          <p className="food__name">{food.food_name}</p>
+        <div className="fooddetail__info">
+          <p className="fooddetail__brand">{food.food_brand}</p>
+          <p className="fooddetail__name">{food.food_name}</p>
           <p className="fooddetail__description">{food.food_description}</p>
           {ratings &&
             ratings.map((rating) => (
-              <div className="food__rating" key={rating.id}>
-                <p className="food__rating-name">{rating.cat_name}</p>
-                <p className="food__score">
-                  {Array.from(
-                    { length: Math.round(rating.rating) },
-                    (_, index) => (
-                      <span key={index} role="img" aria-label="star">
-                        ⭐️
-                      </span>
-                    )
-                  )}
-                </p>
-                <p className="food__rating-name">{rating.comment}</p>
+              <div className="fooddetail__rating" key={rating.id}>
+                {cats[rating.cat_id] && (
+                  <img
+                    className="fooddetail__cat-photo"
+                    src={cats[rating.cat_id].photo}
+                    alt={cats[rating.cat_id].name}
+                  />
+                )}
+                <div className="fooddetail__rating-column">
+                  <p className="fooddetail__score">
+                    {Array.from(
+                      { length: Math.round(rating.rating) },
+                      (_, index) => (
+                        <span key={index} role="img" aria-label="star">
+                          ⭐️
+                        </span>
+                      )
+                    )}
+                  </p>
+                <p className="fooddetail__comment">{rating.comment}</p>
+                </div>
               </div>
             ))}
         </div>
+        <button className="button">Edit Food</button>
+        <button className="button">Add Rating</button>
       </article>
     </>
   );

@@ -145,7 +145,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
           { label: "Birthday", id: "birthday" },
           { label: "Color", id: "color" },
           { label: "Weight", id: "weight" },
-          { label: "Intro", id: "intro" },
         ].map(({ label, id }) => (
           <Input
             key={id}
@@ -183,9 +182,9 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
           Save Changes
         </button>
       </form>
-      <button onClick={deleteCat} className="button">
+      <button onClick={deleteCat} className="button button--delete">
         Delete Profile
-      </button>{" "}
+      </button>
     </>
   );
 }
