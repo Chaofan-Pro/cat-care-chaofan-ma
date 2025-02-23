@@ -65,7 +65,13 @@ function App() {
             />
             <Route
               path="/food/:id"
-              element={<FoodDetailPage baseUrl={baseUrl} />}
+              element={
+                <FoodDetailPage
+                  baseUrl={baseUrl}
+                  food={food}
+                  fetchFood={fetchFood}
+                />
+              }
             />
 
             <Route

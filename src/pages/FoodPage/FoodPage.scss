@@ -7,17 +7,18 @@
   border-radius: 1rem;
   display: flex;
   height: 8.25rem;
+  margin-top: 1rem;
+  color: $primary-black;
   &:hover {
     background-color: $primary-darker-grey;
-    .food__photo{
-        opacity: 0.3;
+    .food__photo {
+      opacity: 0.3;
     }
-    .food__info{
-        color: $primary-white;
+    .food__info {
+      color: $primary-white;
     }
   }
   &__photo {
-    // @extend .cats__photo;
     display: block;
     margin: 1rem;
     height: 6.25rem;
@@ -34,5 +35,13 @@
   }
   &__brand {
     font-size: 1.5rem;
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+  }
+  &__rating-name {
+    font-size: 0.825rem;
+    padding-right: 0.5rem;
   }
 }

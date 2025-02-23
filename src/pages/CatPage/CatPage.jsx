@@ -29,7 +29,6 @@ function CatPage({ baseUrl }) {
     let months = today.getMonth() - birth.getMonth();
     let days = today.getDate() - birth.getDate();
 
-    // Adjust for negative months/days
     if (days < 0) {
       months -= 1;
       days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
