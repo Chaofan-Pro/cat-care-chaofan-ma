@@ -100,16 +100,16 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
     };
     setIsValid(newValidation);
 
+    if (Object.values(newValidation).includes(false)) {
+      return;
+    }
+
     if (!/^\d{4}-\d{1,2}-\d{1,2}$/.test(formData.birthday)) {
       alert("Invalid date format! Please use YYYY-MM-DD.");
     }
 
     if (isNaN(formData.weight) || formData.weight < 0) {
       alert("Invalid weight! Please enter a positive number.");
-    }
-
-    if (Object.values(newValidation).includes(false)) {
-      return;
     }
 
     try {

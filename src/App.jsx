@@ -10,8 +10,8 @@ import EditCatPage from "./pages/EditCatPage/EditCatPage";
 import FoodPage from "./pages/FoodPage/FoodPage";
 import AddFoodPage from "./pages/AddFoodPage/AddFoodPage";
 import FoodDetailPage from "./pages/FoodDetailPage/FoodDetailPage";
+import EditFoodPage from "./pages/EditFoodPage/EditFoodPage";
 import CatlenderPage from "./pages/CatlenderPage/CatlenderPage";
-import CatlenderDetailPage from "./pages/CatlenderDetailPage/CatlenderDetailPage";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 
@@ -73,14 +73,20 @@ function App() {
                 />
               }
             />
+            <Route
+              path="/food/edit/:id"
+              element={
+                <EditFoodPage
+                  baseUrl={baseUrl}
+                  food={food}
+                  fetchFood={fetchFood}
+                />
+              }
+            />
 
             <Route
               path="/catlender"
               element={<CatlenderPage baseUrl={baseUrl} />}
-            />
-            <Route
-              path="/catlender/:id"
-              element={<CatlenderDetailPage baseUrl={baseUrl} />}
             />
           </Routes>
         </main>
