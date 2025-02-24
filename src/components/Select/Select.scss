@@ -1,0 +1,13 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.option {
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  &:hover {
+    background-color: $primary-color;
+  }
+  &__placeholder {
+    color: $primary-darker-grey;
+  }
+}

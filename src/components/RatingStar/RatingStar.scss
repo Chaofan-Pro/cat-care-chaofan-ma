@@ -1,0 +1,14 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.star {
+    font-size: 2rem;
+    cursor: pointer;
+    color: $primary-white;
+    transition: color 0.2s;
+  }
+  
+  .star.filled {
+    color: $primary-color;
+  }

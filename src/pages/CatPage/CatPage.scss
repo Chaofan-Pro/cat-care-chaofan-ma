@@ -1,0 +1,56 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.cats {
+  margin-top: 5rem;
+  &__container {
+    margin-bottom: 2rem;
+    &:hover {
+      .cats__photo {
+        opacity: 0.5;
+      }
+      .cats__name {
+        color: $primary-darker-grey;
+      }
+      .cats__birthday {
+        color: $primary-darker-grey;
+      }
+      .cats__gender {
+        color: $primary-darker-grey;
+      }
+    }
+  }
+  &__row {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+  }
+  &__photo {
+    display: block;
+    margin: auto;
+    height: 6.25rem;
+    width: 6.25rem;
+    object-fit: cover;
+    border-radius: 6.25rem;
+  }
+  &__name {
+    text-align: center;
+    padding-top: 0.5rem;
+    color: $primary-black;
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+  &__birthday {
+    color: $primary-black;
+    text-align: center;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+  &__gender {
+    height: 1.75rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}

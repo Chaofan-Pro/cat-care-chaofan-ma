@@ -1,0 +1,85 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+}
+
+main {
+  margin: 0 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
+}
+
+.icon {
+  height: 2rem;
+  width: 2rem;
+  &:hover {
+    color: $primary-darker-grey;
+  }
+}
+
+.button {
+  font-size: 0.8rem;
+  display: block;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 1.8rem;
+  border: none;
+  background-color: $primary-color;
+  color: $primary-white;
+  font-weight: 300;
+  font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
+  &:hover {
+    background-color: $primary-darker-grey;
+    color: $primary-white;
+  }
+  &--delete {
+    @extend .button;
+    background-color: $primary-darker-grey;
+    &:hover {
+      background-color: $primary-red;
+    }
+  }
+}
+
+.food__type{
+  font-size: 0.6rem;
+  width: 4rem;
+  padding: 0.2rem;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: 500;
+  &--dry-food{
+    @extend .food__type;
+    background-color: $secondary-green;
+    color: $secondary-darker-green;
+  }
+  &--wet-food{
+    @extend .food__type;
+    background-color: $secondary-blue;
+    color: $secondary-darker-blue;
+  }
+  &--snack{
+    @extend .food__type;
+    background-color: $secondary-orange;
+    color: $secondary-darker-orange;
+  }
+}
