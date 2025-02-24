@@ -16,7 +16,7 @@ const PhotoUpload = ({
   return (
     <div className="form__photo">
       {preview ? (
-        <img src={preview} alt="Preview" className="cat__photo" />
+        <img src={preview} alt="Preview" className={location === "/cat/add" ? "cat__photo" : "fooddetail__photo-preview"} />
       ) : location === "/cat/add" ? (
         <img
           src={catIcon}
@@ -27,7 +27,7 @@ const PhotoUpload = ({
         <img
           src={foodIcon}
           alt="Preview"
-          className="cat__photo cat__photo-preview"
+          className="fooddetail__photo-preview"
         />
       )}
       <label

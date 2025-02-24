@@ -11,7 +11,8 @@
     width: 100%;
     height: 10rem;
     border-radius: 0.5rem;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: $primary-white;
   }
   &__brand {
     font-size: 1.25rem;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 function Header() {
   const location = useLocation().pathname;
-  return location === "/cat" ? (
+  return ["/cat", "/food"].includes(location) ? (
     <header></header>
   ) : (
     <header className="header">

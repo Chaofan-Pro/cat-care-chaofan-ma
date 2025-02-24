@@ -167,7 +167,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
           id={input.id}
           name={input.id}
           value={input.value}
-          placeholder={input.placeholder}
           isInputValid={input.isValid}
           changeInputHandle={handleChange}
         />
@@ -189,7 +188,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
         label="Food Description"
         id="foodDescription"
         name="food description"
-        placeholder="food description"
         value={formData.foodDescription}
         isInputValid={isValid.foodDescription}
         changeInputHandle={handleChange}
