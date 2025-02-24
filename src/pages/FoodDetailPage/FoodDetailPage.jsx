@@ -16,7 +16,6 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
   const fetchRating = async (id) => {
     try {
       const { data } = await axios.get(`${baseUrl}/api/food/${id}/rating`);
-      console.log(data);
       setRatings(data);
     } catch (error) {
       console.error("ERROR: " + error);
@@ -44,7 +43,6 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
       fetchRating(food.id);
     }
   }, [food]);
-  console.log(ratings);
 
   useEffect(() => {
     ratings.forEach((rating) => {
@@ -127,7 +125,7 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
         <button onClick={() => setRatingFormVisible(true)} className="button">
           Add Rating
         </button>
-        {ratingFormVisible && <RatingForm baseUrl={baseUrl} />}
+        {ratingFormVisible && <RatingForm baseUrl={baseUrl} setRatingFormVisible={setRatingFormVisible}/>}
       </article>
     </>
   );

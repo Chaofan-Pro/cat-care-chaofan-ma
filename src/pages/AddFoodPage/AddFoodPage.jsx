@@ -96,7 +96,6 @@ function AddFoodPage({ baseUrl }) {
       value: formData.foodType,
       isValid: isValid.foodType,
       options: [
-        { label: "Please select", value: "" },
         { label: "Dry Food", value: "Dry Food" },
         { label: "Wet Food", value: "Wet Food" },
         { label: "Snack", value: "Snack" },

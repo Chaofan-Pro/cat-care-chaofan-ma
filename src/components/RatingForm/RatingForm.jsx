@@ -1,14 +1,14 @@
 import "./RatingForm.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Select from "../../components/Select/Select";
 import TextArea from "../../components/TextArea/TextArea";
 import RatingStar from "../RatingStar/RatingStar";
 import Error from "../Error/Error";
 
-function RatingForm({ baseUrl }) {
+function RatingForm({ baseUrl, setRatingFormVisible }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -48,18 +48,24 @@ function RatingForm({ baseUrl }) {
   };
 
   const handleRatingChange = (rating) => {
-    setFormData({ ...formData, rating }); 
+    setFormData({ ...formData, rating });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const currentDate = new Date();
-    const formattedDate = currentDate.getFullYear() + "-" 
-  + String(currentDate.getMonth() + 1).padStart(2, '0') + "-" 
-  + String(currentDate.getDate()).padStart(2, '0') + " " 
-  + String(currentDate.getHours()).padStart(2, '0') + ":"
-  + String(currentDate.getMinutes()).padStart(2, '0') + ":"
-  + String(currentDate.getSeconds()).padStart(2, '0');
+    const formattedDate =
+      currentDate.getFullYear() +
+      "-" +
+      String(currentDate.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(currentDate.getDate()).padStart(2, "0") +
+      " " +
+      String(currentDate.getHours()).padStart(2, "0") +
+      ":" +
+      String(currentDate.getMinutes()).padStart(2, "0") +
+      ":" +
+      String(currentDate.getSeconds()).padStart(2, "0");
 
     const newValidation = {
       foodId: !!formData.foodId,
@@ -80,10 +86,6 @@ function RatingForm({ baseUrl }) {
       formDataToSend.append("rating", formData.rating);
       formDataToSend.append("comment", formData.comment);
       formDataToSend.append("timestamp", formattedDate);
-
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(`${key}: ${value}`);
-      }
 
       await axios.post(`${baseUrl}/api/rating`, formDataToSend, {
         headers: { "Content-Type": "application/json" },
@@ -138,9 +140,14 @@ function RatingForm({ baseUrl }) {
         isInputValid={isValid.comment}
         changeInputHandle={handleChange}
       />
-      <button className="form__button" type="submit">
+      <button className="button" type="submit">
         Submit
       </button>
+      <Link to={`/food/${id}`}>
+        <button className="button" onClick={() => setRatingFormVisible(false)}>
+          Cancel
+        </button>
+      </Link>
     </form>
   );
 }

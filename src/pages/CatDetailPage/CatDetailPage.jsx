@@ -1,5 +1,5 @@
 import "./CatDetailPage.scss";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 function CatDetailPage({ cat, fetchCat }) {
@@ -19,8 +19,6 @@ function CatDetailPage({ cat, fetchCat }) {
         <p className="cat__text">Color: {cat.color}</p>
         <p className="cat__text">Weight: {cat.weight}kg</p>
         <p className="cat__text">Intro: {cat.intro}</p>
-        <button className="button">Favorite Food</button>
-        <button className="button">Catlender</button>
         <Link to={`/cat/edit/${id}`}>
           <button className="button">Edit Profile</button>
         </Link>

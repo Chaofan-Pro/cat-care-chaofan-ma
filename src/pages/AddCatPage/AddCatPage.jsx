@@ -128,7 +128,6 @@ function AddCatPage({ baseUrl }) {
       value: formData.gender,
       isValid: isValid.gender,
       options: [
-        { label: "Please select", value: "" },
         { label: "Female", value: "female" },
         { label: "Male", value: "male" },
       ],
