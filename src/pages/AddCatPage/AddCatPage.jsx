@@ -10,7 +10,6 @@ import TextArea from "../../components/TextArea/TextArea";
 function AddCatPage({ baseUrl }) {
   const navigate = useNavigate();
   const [photoPreview, setPhotoPreview] = useState(null);
-  // Single State for Form Data
   const [formData, setFormData] = useState({
     name: "",
     photo: null,
@@ -21,7 +20,6 @@ function AddCatPage({ baseUrl }) {
     intro: "",
   });
 
-  // Validation States
   const [isValid, setIsValid] = useState({
     name: true,
     photo: true,
@@ -32,27 +30,23 @@ function AddCatPage({ baseUrl }) {
     intro: true,
   });
 
-  // Handle Input Changes (Text Inputs)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setIsValid({ ...isValid, [e.target.name]: true });
   };
 
-  // Handle File Upload
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData({ ...formData, photo: file });
-      setPhotoPreview(URL.createObjectURL(file)); // Preview Image
+      setPhotoPreview(URL.createObjectURL(file)); 
       setIsValid({ ...isValid, photo: true });
     }
   };
 
-  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate Required Fields
     const newValidation = {
       name: !!formData.name,
       photo: !!formData.photo,
@@ -96,7 +90,6 @@ function AddCatPage({ baseUrl }) {
     }
   };
 
-  // Input Fields
   const inputDetails = [
     {
       label: "Name",
@@ -128,7 +121,6 @@ function AddCatPage({ baseUrl }) {
     },
   ];
 
-  // Select Fields
   const selectDetails = [
     {
       label: "Gender",
@@ -172,7 +164,6 @@ function AddCatPage({ baseUrl }) {
           changeInputHandle={handleChange}
         />
       ))}
-      {/* Select Dropdowns */}
       {selectDetails.map((select) => (
         <Select
           key={select.id}

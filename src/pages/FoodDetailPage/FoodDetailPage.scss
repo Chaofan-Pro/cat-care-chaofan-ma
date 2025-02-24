@@ -25,19 +25,47 @@
     font-size: 0.8rem;
     padding-bottom: 1rem;
   }
+  &__rating-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__rating {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
   }
   &__cat-photo {
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 2.5rem;
+    height: 2.8rem;
+    width: 2.8rem;
+    border-radius: 2.8rem;
     object-fit: cover;
     margin-right: 0.5rem;
   }
   &__comment {
     font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+  &__delete {
+    margin-right: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    &:hover {
+      stroke: $primary-red;
+    }
+  }
+  &__delete-button {
+    background-color: $primary-grey;
+    border: none;
+  }
+  &__rating-right{
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+  }
+  &__rating-timestamp{
+    font-size: 0.7rem;
+    color: $primary-darker-grey;
   }
 }

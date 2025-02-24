@@ -10,7 +10,6 @@ import TextArea from "../../components/TextArea/TextArea";
 function AddFoodPage({ baseUrl }) {
   const navigate = useNavigate();
   const [photoPreview, setPhotoPreview] = useState(null);
-  // Single State for Form Data
   const [formData, setFormData] = useState({
     foodName: "",
     foodBrand: "",
@@ -19,7 +18,6 @@ function AddFoodPage({ baseUrl }) {
     foodDescription: "",
   });
 
-  // Validation States
   const [isValid, setIsValid] = useState({
     foodName: true,
     foodBrand: true,
@@ -28,27 +26,23 @@ function AddFoodPage({ baseUrl }) {
     foodDescription: true,
   });
 
-  // Handle Input Changes (Text Inputs)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setIsValid({ ...isValid, [e.target.name]: true });
   };
 
-  // Handle File Upload
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setFormData({ ...formData, foodPhoto: file });
-      setPhotoPreview(URL.createObjectURL(file)); // Preview Image
+      setPhotoPreview(URL.createObjectURL(file)); 
       setIsValid({ ...isValid, foodPhoto: true });
     }
   };
 
-  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate Required Fields
     const newValidation = {
       foodName: !!formData.foodName,
       foodBrand: !!formData.foodBrand,
@@ -78,7 +72,6 @@ function AddFoodPage({ baseUrl }) {
     }
   };
 
-  // Input Fields
   const inputDetails = [
     {
       label: "Food Brand",
@@ -96,7 +89,6 @@ function AddFoodPage({ baseUrl }) {
     },
   ];
 
-  // Select Fields
   const selectDetails = [
     {
       label: "Food Type",
@@ -133,7 +125,6 @@ function AddFoodPage({ baseUrl }) {
           changeInputHandle={handleChange}
         />
       ))}
-      {/* Select Dropdowns */}
       {selectDetails.map((select) => (
         <Select
           key={select.id}
@@ -155,7 +146,6 @@ function AddFoodPage({ baseUrl }) {
         isInputValid={isValid.foodDescription}
         changeInputHandle={handleChange}
       />
-      {/* Submit Button */}
       <button className="form__button">Submit</button>
     </form>
   );

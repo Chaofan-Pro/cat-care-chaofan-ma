@@ -1,5 +1,4 @@
 import "./Footer.scss";
-import catlender from "/calendar.svg";
 import HomeIcon from "../HomeIcon/HomeIcon";
 import FoodIcon from "../FoodIcon/FoodIcon";
 import CatlenderIcon from "../CatlenderIcon/CatlenderIcon";

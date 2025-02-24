@@ -11,12 +11,10 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Fetch cat data on component mount
   useEffect(() => {
     fetchCat(id);
   }, [id]);
 
-  // State for form data
   const [formData, setFormData] = useState({
     name: "",
     photo: "",
@@ -29,7 +27,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
 
   const [photoPreview, setPhotoPreview] = useState(null);
   const [photoFile, setPhotoFile] = useState(null);
-  // Update form data when cat data is loaded
   useEffect(() => {
     if (cat) {
       setFormData({
@@ -45,7 +42,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
     }
   }, [cat, baseUrl]);
 
-  // Validation States
   const [isValid, setIsValid] = useState({
     name: true,
     photo: true,
@@ -56,18 +52,16 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
     intro: true,
   });
 
-  // Handle Input Changes (Text Inputs)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setIsValid({ ...isValid, [e.target.name]: true });
   };
 
-  // Handle File Upload
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setPhotoFile(file);
-      setPhotoPreview(URL.createObjectURL(file)); // Preview Image
+      setPhotoPreview(URL.createObjectURL(file)); 
       setIsValid({ ...isValid, photo: true });
     } else {
       setPhotoFile(null);
@@ -84,7 +78,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
       console.error(error);
     }
   };
-  // Handle Form Submission
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -122,9 +115,9 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
       formDataToSend.append("intro", formData.intro || "");
 
       if (photoFile) {
-        formDataToSend.append("photo", photoFile); // Append file
+        formDataToSend.append("photo", photoFile);
       } else if (formData.photo) {
-        formDataToSend.append("photo", formData.photo); // Append URL
+        formDataToSend.append("photo", formData.photo);
       }
 
       await axios.put(`${baseUrl}/api/cats/${id}`, formDataToSend, {
@@ -164,7 +157,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
             changeInputHandle={handleChange}
           />
         ))}
-        {/* Select Dropdowns */}
         <Select
           label="Gender"
           id="gender"
@@ -173,7 +165,6 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
           isInputValid={isValid.gender}
           changeInputHandle={handleChange}
           options={[
-            { label: "Please select", value: "" },
             { label: "Female", value: "Female" },
             { label: "Male", value: "Male" },
           ]}

@@ -41,5 +41,15 @@
         font-weight: 300;
       }
     }
+    &--rating {
+      @extend .form__input;
+      background-color: $primary-white;
+      box-shadow: 0 0 0px 1000px $primary-white inset;
+      border: 1px solid $primary-white;
+      &::placeholder {
+        color: $primary-darker-grey;
+        font-weight: 300;
+      }
+    }
   }
 }

@@ -108,7 +108,7 @@ function FoodPage({ baseUrl }) {
                   </div>
                 ))}
             </div>
-          </article>{" "}
+          </article>
         </Link>
       ))}
       <Link to="/food/add">

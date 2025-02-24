@@ -19,8 +19,14 @@ const TextArea = ({
         {label}
       </label>
       <textarea
-        className={`form__input form__textarea ${isInputValid ? "" : "form__input--error"} ${
-          location.includes("add") ? "form__input--add" : ""
+        className={`form__input form__textarea ${
+          isInputValid ? "" : "form__input--error"
+        } ${
+          location.includes("add")
+            ? "form__input--add"
+            : location.includes("edit")
+            ? ""
+            : "form__input--rating"
         }`}
         type={type}
         id={id}

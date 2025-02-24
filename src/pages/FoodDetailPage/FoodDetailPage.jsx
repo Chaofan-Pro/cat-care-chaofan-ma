@@ -1,17 +1,22 @@
 import "./FoodDetailPage.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import RatingForm from "../../components/RatingForm/RatingForm";
+import DeleteIcon from "../../components/DeleteIcon/DeleteIcon";
 
 function FoodDetailPage({ baseUrl, food, fetchFood }) {
   const [ratings, setRatings] = useState([]);
   const [cats, setCats] = useState({});
+  const [ratingFormVisible, setRatingFormVisible] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const fetchRating = async (id) => {
     try {
       const { data } = await axios.get(`${baseUrl}/api/food/${id}/rating`);
+      console.log(data);
       setRatings(data);
     } catch (error) {
       console.error("ERROR: " + error);
@@ -39,12 +44,22 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
       fetchRating(food.id);
     }
   }, [food]);
+  console.log(ratings);
 
   useEffect(() => {
     ratings.forEach((rating) => {
       fetchCats(rating.cat_id);
     });
   }, [ratings]);
+
+  const deleteRating = async (ratingId) => {
+    try {
+      await axios.delete(`${baseUrl}/api/rating/${ratingId}`);
+      navigate(0);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (!food) return <p>No Food Found</p>;
 
@@ -71,26 +86,37 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
           <p className="fooddetail__description">{food.food_description}</p>
           {ratings &&
             ratings.map((rating) => (
-              <div className="fooddetail__rating" key={rating.id}>
-                {cats[rating.cat_id] && (
-                  <img
-                    className="fooddetail__cat-photo"
-                    src={cats[rating.cat_id].photo}
-                    alt={cats[rating.cat_id].name}
-                  />
-                )}
-                <div className="fooddetail__rating-column">
-                  <p className="fooddetail__score">
-                    {Array.from(
-                      { length: Math.round(rating.rating) },
-                      (_, index) => (
-                        <span key={index} role="img" aria-label="star">
-                          ⭐️
-                        </span>
-                      )
-                    )}
-                  </p>
-                  <p className="fooddetail__comment">{rating.comment}</p>
+              <div className="fooddetail__rating-container" key={rating.id}>
+                <div className="fooddetail__rating">
+                  {cats[rating.cat_id] && (
+                    <img
+                      className="fooddetail__cat-photo"
+                      src={cats[rating.cat_id].photo}
+                      alt={cats[rating.cat_id].name}
+                    />
+                  )}
+                  <div className="fooddetail__rating-column">
+                    <p className="fooddetail__score">
+                      {Array.from(
+                        { length: Math.round(rating.rating) },
+                        (_, index) => (
+                          <span key={index} role="img" aria-label="star">
+                            ⭐️
+                          </span>
+                        )
+                      )}
+                    </p>
+                    <p className="fooddetail__comment">{rating.comment}</p>
+                  </div>
+                </div>
+                <div className="fooddetail__rating-right">
+                  <button
+                    className="fooddetail__delete-button"
+                    onClick={() => deleteRating(rating.id)}
+                  >
+                    <DeleteIcon />
+                  </button>
+                  <p className="fooddetail__rating-timestamp">{rating.timestamp.split("T")[0]}</p>
                 </div>
               </div>
             ))}
@@ -98,8 +124,10 @@ function FoodDetailPage({ baseUrl, food, fetchFood }) {
         <Link to={`/food/edit/${id}`}>
           <button className="button">Edit Food</button>
         </Link>
-        <button className="button">Edit Rating</button>
-        <button className="button">Add Rating</button>
+        <button onClick={() => setRatingFormVisible(true)} className="button">
+          Add Rating
+        </button>
+        {ratingFormVisible && <RatingForm baseUrl={baseUrl} />}
       </article>
     </>
   );

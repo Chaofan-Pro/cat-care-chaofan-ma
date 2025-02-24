@@ -38,7 +38,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
       setPhotoPreview(food.food_photo);
     }
   }, [food, baseUrl]);
-  // Validation States
   const [isValid, setIsValid] = useState({
     foodName: true,
     foodBrand: true,
@@ -47,19 +46,17 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
     foodDescription: true,
   });
 
-  // Handle Input Changes (Text Inputs)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setIsValid({ ...isValid, [e.target.name]: true });
   };
 
-  // Handle File Upload
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setPhotoFile(file);
       setFormData({ ...formData, foodPhoto: file });
-      setPhotoPreview(URL.createObjectURL(file)); // Preview Image
+      setPhotoPreview(URL.createObjectURL(file));
       setIsValid({ ...isValid, foodPhoto: true });
     } else {
       setPhotoFile(null);
@@ -77,11 +74,9 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
     }
   };
 
-  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate Required Fields
     const newValidation = {
       foodName: !!formData.foodName,
       foodBrand: !!formData.foodBrand,
@@ -103,9 +98,9 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
       formDataToSend.append("food_description", formData.foodDescription);
 
       if (photoFile) {
-        formDataToSend.append("food_photo", photoFile); // Append file
+        formDataToSend.append("food_photo", photoFile); 
       } else if (formData.foodPhoto) {
-        formDataToSend.append("food_photo", formData.foodPhoto); // Append URL
+        formDataToSend.append("food_photo", formData.foodPhoto); 
       }
 
       await axios.put(`${baseUrl}/api/food/${id}`, formDataToSend, {
@@ -117,7 +112,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
     }
   };
 
-  // Input Fields
   const inputDetails = [
     {
       label: "Food Brand",
@@ -135,7 +129,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
     },
   ];
 
-  // Select Fields
   const selectDetails = [
     {
       label: "Food Type",
@@ -143,7 +136,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
       value: formData.foodType,
       isValid: isValid.foodType,
       options: [
-        { label: "Please select", value: "" },
         { label: "Dry Food", value: "Dry Food" },
         { label: "Wet Food", value: "Wet Food" },
         { label: "Snack", value: "Snack" },
@@ -171,7 +163,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
           changeInputHandle={handleChange}
         />
       ))}
-      {/* Select Dropdowns */}
       {selectDetails.map((select) => (
         <Select
           key={select.id}
@@ -192,7 +183,6 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
         isInputValid={isValid.foodDescription}
         changeInputHandle={handleChange}
       />
-      {/* Submit Button */}
       <button type="submit " className="form__button">
         Submit
       </button>

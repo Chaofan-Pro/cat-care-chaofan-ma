@@ -33,8 +33,9 @@
     margin: 1rem;
     height: 8.5rem;
     width: 30%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 1rem;
+    background-color: $primary-white;
     &:hover {
       opacity: 0.3;
       color: $primary-color;
