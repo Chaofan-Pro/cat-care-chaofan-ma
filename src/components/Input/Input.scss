@@ -1,0 +1,55 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.form {
+  &__label {
+    display: block;
+    font-size: 0.8125rem;
+    padding: 1rem 0 0.25rem 0;
+    font-weight: 600;
+  }
+
+  &__input {
+    display: block;
+    font-weight: 400;
+    font-size: 0.8rem;
+    font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
+    padding: 0 1rem;
+    width: 100%;
+    height: 2.25rem;
+    border-radius: 20px;
+    box-shadow: 0 0 0px 1000px $primary-grey inset;
+    background-color: $primary-grey;
+    border: 1px solid $primary-grey;
+    &::placeholder {
+      background-color: none;
+      color: $primary-black;
+      font-weight: 400;
+    }
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $primary-color;
+    }
+    &--error {
+      border: 1px solid $primary-red;
+    }
+    &--add {
+      @extend .form__input;
+      &::placeholder {
+        color: $primary-darker-grey;
+        font-weight: 300;
+      }
+    }
+    &--rating {
+      @extend .form__input;
+      background-color: $primary-white;
+      box-shadow: 0 0 0px 1000px $primary-white inset;
+      border: 1px solid $primary-white;
+      &::placeholder {
+        color: $primary-darker-grey;
+        font-weight: 300;
+      }
+    }
+  }
+}

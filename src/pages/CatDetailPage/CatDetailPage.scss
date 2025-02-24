@@ -1,0 +1,27 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.cat {
+  margin-top: 5rem;
+  &__photo {
+    display: block;
+    margin: auto;
+    height: 10rem;
+    width: 10rem;
+    object-fit: cover;
+    border-radius: 6.25rem;
+  }
+  &__name {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    padding: 0.5rem;
+  }
+  &__text {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 300;
+    padding: 0.2rem;
+  }
+}

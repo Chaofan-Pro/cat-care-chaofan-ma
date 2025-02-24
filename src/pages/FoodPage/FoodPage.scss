@@ -1,0 +1,70 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixin" as *;
+@use "../../styles/partials/global" as *;
+
+.food {
+  background-color: $primary-grey;
+  border-radius: 1rem;
+  display: flex;
+  height: 10.5rem;
+  margin-top: 1rem;
+  color: $primary-black;
+  &:hover {
+    background-color: $primary-darker-grey;
+    .food__photo {
+      opacity: 0.7;
+    }
+    .food__info {
+      color: $primary-white;
+      opacity: 0.7;
+
+    }
+    .food__cat-photo {
+      opacity: 0.7;
+    }
+  }
+  &__title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__photo {
+    display: block;
+    margin: 1rem;
+    height: 8.5rem;
+    width: 30%;
+    object-fit: contain;
+    border-radius: 1rem;
+    background-color: $primary-white;
+    &:hover {
+      opacity: 0.3;
+      color: $primary-color;
+    }
+  }
+  &__info {
+    margin: 1rem 1rem 1rem 0;
+    width: 70%;
+  }
+  &__brand {
+    font-size: 1.25rem;
+  }
+  &__name {
+    font-size: 0.8rem;
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+  }
+  &__cat-photo {
+    object-fit: cover;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 1.5rem;
+    margin: 0.25rem 0.25rem 0.25rem 0rem;
+  }
+  &__rating-name {
+    font-size: 0.8rem;
+    padding-right: 0.5rem;
+    width: 3rem;
+  }
+}
