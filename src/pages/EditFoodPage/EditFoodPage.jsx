@@ -195,7 +195,12 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
         changeInputHandle={handleChange}
       />
       {/* Submit Button */}
-      <button className="form__button">Submit</button>
+      <button type="submit " className="form__button">
+        Submit
+      </button>
+      <button onClick={deleteFood} className="button button--delete">
+        Delete Food
+      </button>
     </form>
   );
 }
