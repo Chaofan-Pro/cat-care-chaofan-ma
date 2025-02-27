@@ -7,6 +7,9 @@
     cursor: pointer;
     color: $primary-white;
     transition: color 0.2s;
+    &:hover{
+      color: $primary-color;
+    }
   }
   
   .star.filled {

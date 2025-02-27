@@ -7,6 +7,13 @@ function FoodPage({ baseUrl }) {
   const [foods, setFoods] = useState([]);
   const [ratings, setRatings] = useState({});
   const [cats, setCats] = useState({});
+  const [selectCategory, setSelectCategory] = useState("All");
+
+  const handleCategoryChange = (event) => {
+    const selectCategory = event.target.value;
+    // console.log("Selected category:", selectedCategory);
+    setSelectCategory(selectCategory);
+  };
 
   const fetchFoods = async () => {
     try {
@@ -61,11 +68,40 @@ function FoodPage({ baseUrl }) {
     });
   }, [ratings]);
 
+  const getCategory = (foods, selectCategory) => {
+    let filteredFood = [];
+    if (selectCategory !== "All") {
+      filteredFood = foods.filter((item) => {
+        if (item.food_type === selectCategory) {
+          return true;
+        }
+      });
+    } else {
+      filteredFood = foods;
+    }
+    return filteredFood;
+  };
+  const filteredFood = getCategory(foods, selectCategory);
+
   if (!foods) return <p>No Food Found</p>;
 
   return (
     <>
-      {foods.map((food) => (
+        <label htmlFor="tood_type" className="form__label">
+          Food Type
+        </label>
+      <div className="select-wrapper">
+        <select
+          className="form__input food__select"
+          onChange={handleCategoryChange}
+        >
+          <option value="All">All</option>
+          <option value="Dry Food">Dry Food</option>
+          <option value="Wet Food">Wet Food</option>
+          <option value="Snack">Snack</option>
+        </select>
+      </div>
+      {filteredFood.map((food) => (
         <Link to={`/food/${food.id}`} key={food.id}>
           <article className="food">
             <img className="food__photo" src={food.food_photo} alt="" />

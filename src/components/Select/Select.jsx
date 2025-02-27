@@ -16,28 +16,30 @@ const Select = ({
       <label className="form__label" htmlFor={id}>
         {label}
       </label>
-      <select
-        className={`form__input ${isInputValid ? "" : "form__input--error"} ${
-          location.includes("add")
-            ? "form__input--add"
-            : location.includes("edit")
-            ? ""
-            : "form__input--rating"
-        }`}
-        name={id}
-        id={id}
-        value={value}
-        onChange={changeInputHandle}
-      >
-        <option value="" className="option__placeholder">
-          Please select
-        </option>
-        {options.map((option, index) => (
-          <option key={index} value={option.value} className="option">
-            {option.label}
+      <div className="select-wrapper ">
+        <select
+          className={`form__input ${isInputValid ? "" : "form__input--error"} ${
+            location.includes("add")
+              ? "form__input--add"
+              : location.includes("edit")
+              ? ""
+              : "form__input--rating"
+          }`}
+          name={id}
+          id={id}
+          value={value}
+          onChange={changeInputHandle}
+        >
+          <option value="" className="option__placeholder">
+            Please select
           </option>
-        ))}
-      </select>
+          {options.map((option, index) => (
+            <option key={index} value={option.value} className="option">
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
       {!isInputValid && <Error />}
     </div>
   );

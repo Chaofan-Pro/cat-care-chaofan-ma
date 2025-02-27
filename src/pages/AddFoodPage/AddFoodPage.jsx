@@ -104,7 +104,7 @@ function AddFoodPage({ baseUrl }) {
   ];
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form main" onSubmit={handleSubmit}>
       <PhotoUpload
         label="Photo"
         id="photo"

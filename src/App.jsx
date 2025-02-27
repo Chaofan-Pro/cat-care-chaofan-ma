@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <>
+    <section>
       <BrowserRouter>
         <Header />
         <main>
@@ -92,7 +92,7 @@ function App() {
         </main>
         <Footer />
       </BrowserRouter>
-    </>
+    </section>
   );
 }
 

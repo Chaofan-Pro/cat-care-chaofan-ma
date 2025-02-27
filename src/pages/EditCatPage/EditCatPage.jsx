@@ -132,7 +132,7 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
   if (!cat) return <p>Loading cat data...</p>;
 
   return (
-    <>
+    <article className="main">
       <form className="form" onSubmit={handleSubmit}>
         <PhotoUpload
           label="Photo"
@@ -184,7 +184,7 @@ function EditCatPage({ baseUrl, cat, fetchCat }) {
       <button onClick={deleteCat} className="button button--delete">
         Delete Profile
       </button>
-    </>
+    </article>
   );
 }
 

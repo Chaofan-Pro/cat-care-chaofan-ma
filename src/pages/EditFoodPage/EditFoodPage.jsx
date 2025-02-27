@@ -144,7 +144,7 @@ function EditFoodPage({ baseUrl, food, fetchFood }) {
   ];
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
+    <form className="form main" onSubmit={handleSubmit}>
       <PhotoUpload
         label="Photo"
         id="photo"

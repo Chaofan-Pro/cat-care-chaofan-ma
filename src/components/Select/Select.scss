@@ -4,10 +4,33 @@
 
 .option {
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  &:hover {
+  &:target {
     background-color: $primary-color;
   }
   &__placeholder {
     color: $primary-darker-grey;
   }
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Custom arrow */
+.select-wrapper::after {
+  content: "▼"; /* Unicode down arrow */
+  font-size: 14px;
+  color: gray;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevent click interference */
+}
+
+/* Hide the default arrow in older browsers */
+.header__select::-ms-expand {
+  display: none;
 }
