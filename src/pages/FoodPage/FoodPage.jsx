@@ -8,11 +8,16 @@ function FoodPage({ baseUrl }) {
   const [ratings, setRatings] = useState({});
   const [cats, setCats] = useState({});
   const [selectCategory, setSelectCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleCategoryChange = (event) => {
     const selectCategory = event.target.value;
     // console.log("Selected category:", selectedCategory);
     setSelectCategory(selectCategory);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   const fetchFoods = async () => {
@@ -68,28 +73,47 @@ function FoodPage({ baseUrl }) {
     });
   }, [ratings]);
 
-  const getCategory = (foods, selectCategory) => {
-    let filteredFood = [];
+  const getFilteredFood = (foods, selectCategory) => {
+    let filteredFood = foods;
+
+    // Filter by category
     if (selectCategory !== "All") {
-      filteredFood = foods.filter((item) => {
-        if (item.food_type === selectCategory) {
-          return true;
-        }
-      });
-    } else {
-      filteredFood = foods;
+      filteredFood = filteredFood.filter(
+        (item) => item.food_type === selectCategory
+      );
     }
+
+    // Filter by search term
+    if (searchTerm) {
+      filteredFood = filteredFood.filter(
+        (item) =>
+          item.food_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.food_brand.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
     return filteredFood;
   };
-  const filteredFood = getCategory(foods, selectCategory);
+  const filteredFood = getFilteredFood(foods, selectCategory);
 
   if (!foods) return <p>No Food Found</p>;
 
   return (
     <>
-        <label htmlFor="tood_type" className="form__label">
-          Food Type
-        </label>
+      <label htmlFor="food_search" className="form__label">
+        Search Food
+      </label>
+      <input
+        type="text"
+        id="food_search"
+        className="form__input"
+        placeholder="Search by name or brand..."
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+      <label htmlFor="tood_type" className="form__label">
+        Food Type
+      </label>
       <div className="select-wrapper">
         <select
           className="form__input food__select"
