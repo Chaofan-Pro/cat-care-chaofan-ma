@@ -6,9 +6,12 @@
   margin-top: 5rem;
   &__container {
     margin-bottom: 2rem;
+    transition: all 0.3s ease;
     &:hover {
+      transform: scale(1.1);
       .cats__photo {
         opacity: 0.5;
+        transform: scale(1.1);
       }
       .cats__name {
         color: $primary-darker-grey;
@@ -19,6 +22,9 @@
       .cats__gender {
         color: $primary-darker-grey;
       }
+    }
+    &:active {
+      transform: scale(0.97);
     }
   }
   &__row {

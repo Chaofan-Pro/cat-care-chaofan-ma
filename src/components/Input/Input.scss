@@ -22,6 +22,10 @@
     box-shadow: 0 0 0px 1000px $primary-grey inset;
     background-color: $primary-grey;
     border: 1px solid $primary-grey;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.03);
+    }
     &::placeholder {
       background-color: none;
       color: $primary-black;
@@ -30,6 +34,7 @@
     &:focus-visible {
       outline: none;
       border: 1px solid $primary-color;
+      transform: scale(1.03);
     }
     &--error {
       border: 1px solid $primary-red;

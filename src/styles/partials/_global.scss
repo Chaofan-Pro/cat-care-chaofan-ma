@@ -34,8 +34,13 @@ button {
 .icon {
   height: 2rem;
   width: 2rem;
+  transition: all 0.3s ease;
   &:hover {
     color: $primary-darker-grey;
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.97);
   }
 }
 
@@ -51,9 +56,16 @@ button {
   color: $primary-white;
   font-weight: 300;
   font-family: "Poppins", "Nunito Sans", Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease;
   &:hover {
     background-color: $primary-darker-grey;
     color: $primary-white;
+    transform: scale(1.03);
+  }
+  &:active {
+    background-color: $primary-darker-grey;
+    color: $primary-white;
+    transform: scale(0.97);
   }
   &--delete {
     @extend .button;
